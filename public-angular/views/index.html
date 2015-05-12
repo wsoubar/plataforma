@@ -1,0 +1,76 @@
+<!-- public/index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+
+    <title>Starter Node and Angular</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <!-- custom styles -->
+    <link rel="stylesheet" href="css/custom.css"> 
+    <link rel="stylesheet" href="css/login.css">
+    <!-- JS -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="libs/angular-bootstrap/ui-bootstrap.min.js"></script>
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="js/services/PersonagemService.js"></script>
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/LoginCtrl.js"></script>
+    <script src="js/controllers/PersonagemCtrl.js"></script>
+    <script src="js/appRoutes.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body ng-app="sampleApp" ng-controller="PersonagemController">
+<div class="container">
+
+    <!-- HEADER -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavbarCtrl as navctrl">
+        <!-- <div class="navbar-header">
+            <a class="navbar-brand" href="/">Stencil: Node and Angular</a>
+        </div>
+        -->
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Book de Colaboradores</a>
+        </div>
+
+        <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
+        <!-- <ul class="nav navbar-nav">
+            <li><a href="/personagens">Personagens</a></li>
+        </ul> -->
+        <div class="collapse navbar-collapse" collapse="isCollapsed">
+          <ul class="nav navbar-nav">
+             <li><a href="/personagens" ng-click="isCollapsed = !isCollapsed">Personagens</a></li>
+             <li><a href="/listar" ng-click="isCollapsed = !isCollapsed">Listar</a></li>
+             <li><a href="/amizades" ng-click="isCollapsed = !isCollapsed">Amizades</a></li>
+             <li><a href="/login" ng-click="isCollapsed = !isCollapsed">Login</a></li>
+          </ul>
+          <form name="formBusca" id="formBusca" class="navbar-form navbar-left" role="search">
+            <div class="input-group">
+                <input id="busca" name="busca" type="text" class="form-control" placeholder="nome, depart., cargo" />
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="button" ng-click="navctrl.screenWidth()"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>    
+          </form>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+
+    <!-- ANGULAR DYNAMIC CONTENT -->
+    <div ng-view></div>
+
+</div>
+</body>
+</html>

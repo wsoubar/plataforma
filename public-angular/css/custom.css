@@ -1,0 +1,61 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+	padding-top: 65px;
+	padding-bottom: 20px;
+}
+
+/* default styles here for older browsers. 
+       I tend to go for a 600px - 960px width max but using percentages
+    */
+@media only screen and (min-width:960px) {
+	/* styles for browsers larger than 960px; */
+	#formBusca {
+		margin-left: 80px;
+	}
+}
+
+@media only screen and (min-width:1180px) {
+	#formBusca {
+		margin-left: 200px;
+	}
+}
+
+@media only screen and (min-width:1300px) {
+	#formBusca {
+		margin-left: 220px;
+	}
+}
+
+
+@media only screen and (min-width:1440px) {
+	/* styles for browsers larger than 1440px; */
+}
+
+@media only screen and (min-width:2000px) {
+	/* for sumo sized (mac) screens */
+}
+
+@media only screen and (max-device-width:767px) {
+	/* styles for mobile browsers smaller than 480px; (iPhone) */
+	.imagem-perfil {
+		max-width: 130px;
+		max-height: 130px;
+	}
+}
+
+@media only screen and (device-width:768px) { /* default iPad screens */
+}
+
+#senha {
+	width: 95px;
+}
+.imagem-perfil {
+	max-width: 320px;
+	max-height: 320px;	
+}
+.perfil-container {
+	padding-top: 10px;
+}
+.box {
+	border-bottom: solid 1px #ccc;
+}
