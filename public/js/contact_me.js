@@ -1,9 +1,10 @@
 $(function() {
 
-    $("input,textarea").jqBootstrapValidation({
+    $('form[name="sentMessage"]').find("input,textarea").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
             // additional error messages or events
+            console.log('deu erro aqui');
         },
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
@@ -17,8 +18,9 @@ $(function() {
             if (firstName.indexOf(' ') >= 0) {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
+            console.log('antes do ajax!');
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: "/salvaDesafio",
                 type: "POST",
                 data: {
                     name: name,
@@ -27,7 +29,8 @@ $(function() {
                     message: message
                 },
                 cache: false,
-                success: function() {
+                success: function(data) {
+                    console.log('Sucesso');
                     // Success message
                     $('#success').html("<div class='alert alert-success'>");
                     $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -40,7 +43,8 @@ $(function() {
                     //clear all fields
                     $('#contactForm').trigger("reset");
                 },
-                error: function() {
+                error: function(err) {
+                    console.log('Erro: ' + err);
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")

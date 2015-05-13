@@ -46,6 +46,22 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/teste', function(req, res){
+        res.json({mensagem: 'sucesso'});
+    }); 
+
+    app.post('/salvaDesafio', function(req, res) {
+        // console.log(req);
+        console.log(req.body.name);
+        console.log(req.body.phone);
+        console.log(req.body.email);
+        console.log(req.body.message);
+        
+        res.status(600);
+        //url = req.url;
+        res.json({ sucesso: true, mensagem: 'realizado com sucesso' });        
+    });
+
     // route to handle delete goes here (app.delete)
 
     // frontend routes =========================================================
