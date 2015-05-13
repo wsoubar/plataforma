@@ -716,6 +716,74 @@ section#contact .text-danger {
     color: #e74c3c;
 }
 
+/* participe section */
+
+section#participe {
+    background-color: #222;
+    background-image: url(../img/map-image.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+section#participe .section-heading {
+    color: #fff;
+}
+
+section#participe .form-group {
+    margin-bottom: 25px;
+}
+
+section#participe .form-group input,
+section#participe .form-group textarea {
+    padding: 20px;
+}
+
+section#participe .form-group input.form-control {
+    height: auto;
+}
+
+section#participe .form-group textarea.form-control {
+    height: 236px;
+}
+
+section#participe .form-control:focus {
+    border-color: #fed136;
+    box-shadow: none;
+}
+
+section#participe::-webkit-input-placeholder {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    color: #bbb;
+}
+
+section#participe:-moz-placeholder {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    color: #bbb;
+}
+
+section#participe::-moz-placeholder {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    color: #bbb;
+}
+
+section#participe:-ms-input-placeholder {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    color: #bbb;
+}
+
+section#participe .text-danger {
+    color: #e74c3c;
+}
+
+
 footer {
     padding: 25px 0;
     text-align: center;
