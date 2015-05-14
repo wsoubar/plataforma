@@ -840,6 +840,26 @@ aside.clients img {
     margin: 50px auto;
 }
 
+
+section#services {
+    background-color: #8BC34A;
+    color: #fff;
+}
+
+.iot-h4 {
+    text-transform: none;
+    text-align: left;
+    font-size: 26px;
+    padding-top: 60px;
+}   
+
+.iot-p {
+    font-size: 17px;
+    text-align: justify;
+    max-width: 570px;
+    line-height: normal;    
+}
+
 section#contact {
     background-color: #222;
     background-image: url(../img/map-image.png);
