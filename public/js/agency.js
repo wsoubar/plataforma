@@ -13,6 +13,12 @@ $(function() {
         }, 1500, 'easeInOutExpo');
         event.preventDefault();
     });
+
+  $('#quote-carousel').carousel({
+    pause: true,
+    interval: 6000,
+  });
+
 });
 
 // Highlight the top nav as scrolling occurs
