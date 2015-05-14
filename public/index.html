@@ -17,6 +17,7 @@
     <!-- Custom CSS -->
     <link href="css/agency.css" rel="stylesheet">
     <link href="css/carousel.css" rel="stylesheet">
+    <link href="css/feed.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -261,48 +262,6 @@
                         <p class="text-muted">Website Design</p>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/golden.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>Golden</h4>
-                        <p class="text-muted">Website Design</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/escape.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>Escape</h4>
-                        <p class="text-muted">Website Design</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/dreams.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>Dreams</h4>
-                        <p class="text-muted">Website Design</p>
-                    </div>
-                </div>
                 <div class="col-lg-12 text-center">
                     <a href="#contact" class="page-scroll btn btn-xl">Cadastre um desafio</a>                    
                 </div>
@@ -435,51 +394,132 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">About</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading">Feed</h2>
+                    <h3 class="section-subheading text-muted">Saiba o que estão falando e deixe também o seu comentário.</h3>
                 </div>
             </div>
+
             <div class="row">
-                <div class="col-lg-12">
-                    <ul class="timeline">
-                        <li>
-                          <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
-                          <div class="timeline-panel">
-                            <div class="timeline-heading">
-                              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-                              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+                <div class="col-md-4" ng-hide="true"></div>
+                    <div class="col-md-12">
+                         <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <span class="glyphicon glyphicon-comment"></span> Comentários
+                                <!--
+                                <div class="btn-group pull-right">
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                    </button>
+                                    <ul class="dropdown-menu slidedown">
+                                        <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">
+                                        </span>Refresh</a></li>
+                                        <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-ok-sign">
+                                        </span>Available</a></li>
+                                        <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">
+                                        </span>Busy</a></li>
+                                        <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-time"></span>
+                                            Away</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>
+                                            Sign Out</a></li>
+                                    </ul>                               
+                                </div>
+                                -->
                             </div>
-                            <div class="timeline-body">
-                              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
+
+                            <div class="panel-body">
+                                <ul class="chat">
+                                    <li class="clearfix">
+                                        <div class="chat-body clearfix">
+                                            <div class="header">
+                                                <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                            </div>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                dolor, quis ullamcorper ligula sodales.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <div class="chat-body clearfix">
+                                            <div class="header">
+                                                <strong class="primary-font">Peter Pan</strong> <small class="pull-right text-muted">
+                                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                            </div>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                dolor, quis ullamcorper ligula sodales.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <div class="chat-body clearfix">
+                                            <div class="header">
+                                                <strong class="primary-font">Mussum</strong> <small class="pull-right text-muted">
+                                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                            </div>
+                                            <p>
+                                                Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <div class="chat-body clearfix">
+                                            <div class="header">
+                                                <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                    <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                            </div>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                dolor, quis ullamcorper ligula sodales.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <!--
+                                    <li class="right clearfix"><span class="chat-img pull-right">
+                                        <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                        <div class="chat-body clearfix">
+                                            <div class="header">
+                                                <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                                <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                            </div>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                dolor, quis ullamcorper ligula sodales.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="left clearfix"><span class="chat-img pull-left">
+                                        <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
+                                    </span>
+                                        <div class="chat-body clearfix">
+                                            <div class="header">
+                                                <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                            </div>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                                dolor, quis ullamcorper ligula sodales.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    -->
+                                </ul>
                             </div>
-                          </div>
-                        </li>
-                        <li class="timeline-inverted">
-                          <div class="timeline-badge warning"><i class="glyphicon glyphicon-credit-card"></i></div>
-                          <div class="timeline-panel">
-                            <div class="timeline-heading">
-                              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
+                            <div class="panel-footer">
+                                <div class="input-group">
+                                    <input id="btn-input" type="text" class="form-control" placeholder="Digite seu comentário aqui..." />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" id="btn-chat">enviar</button>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="timeline-body">
-                              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-                              <p>Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Interagi no mé, cursus quis, vehicula ac nisi. Aenean vel dui dui. Nullam leo erat, aliquet quis tempus a, posuere ut mi. Ut scelerisque neque et turpis posuere pulvinar pellentesque nibh ullamcorper. Pharetra in mattis molestie, volutpat elementum justo. Aenean ut ante turpis. Pellentesque laoreet mé vel lectus scelerisque interdum cursus velit auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac mauris lectus, non scelerisque augue. Aenean justo massa.</p>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="timeline-badge danger"><i class="glyphicon glyphicon-credit-card"></i></div>
-                          <div class="timeline-panel">
-                            <div class="timeline-heading">
-                              <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-                            </div>
-                            <div class="timeline-body">
-                              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.</p>
-                            </div>
-                          </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
         </div>
     </section>
 
@@ -551,15 +591,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                    <span class="copyright">Copyright &copy; MJV Tecnologia & Inovação 2015</span>
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        <li><a href="http://www.twitter.com/mjvinovacao" target="_blank"><i class="fa fa-twitter"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        <li><a href="http://www.facebook.com/MJVTecInov" target="_blank"><i class="fa fa-facebook"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        <li><a href="http://br.linkedin.com/company/mjv-innovation" target="_blank"><i class="fa fa-linkedin"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -664,86 +704,6 @@
         </div>
     </div>
 
-    <!-- Portfolio Modal 4 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="img/portfolio/golden-preview.png" alt="">
-                            <p>Start Bootstrap's Agency theme is based on Golden, a free PSD website template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Golden is a modern and clean one page web template that was made exclusively for Best PSD Freebies. This template has a great portfolio, timeline, and meet your team sections that can be easily modified to fit your needs.</p>
-                            <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/golden-free-one-page-web-template/">FreebiesXpress.com</a>.</p>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Portfolio Modal 5 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="img/portfolio/escape-preview.png" alt="">
-                            <p>Escape is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Escape is a one page web template that was designed with agencies in mind. This template is ideal for those looking for a simple one page solution to describe your business and offer your services.</p>
-                            <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/escape-one-page-psd-web-template/">FreebiesXpress.com</a>.</p>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Portfolio Modal 6 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="img/portfolio/dreams-preview.png" alt="">
-                            <p>Dreams is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Dreams is a modern one page web template designed for almost any purpose. It’s a beautiful template that’s designed with the Bootstrap framework in mind.</p>
-                            <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/dreams-free-one-page-web-template/">FreebiesXpress.com</a>.</p>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
