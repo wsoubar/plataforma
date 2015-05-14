@@ -14,7 +14,7 @@ body {
 }
 
 .text-primary {
-    color: #0097a7;
+    color: #fed136;
 }
 
 p {
@@ -35,7 +35,7 @@ a.active {
 }
 
 a {
-    color: #0097a7;
+    color: #fed136;
 }
 
 a:hover,
@@ -69,12 +69,12 @@ h6 {
 }
 
 .btn-primary {
-    border-color: #0097a7;
+    border-color: #fed136;
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: 700;
     color: #fff;
-    background-color: #0097a7;
+    background-color: #fed136;
 }
 
 .btn-primary:hover,
@@ -108,25 +108,25 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-    border-color: #0097a7;
-    background-color: #0097a7;
+    border-color: #fed136;
+    background-color: #fed136;
 }
 
 .btn-primary .badge {
-    color: #0097a7;
+    color: #fed136;
     background-color: #fff;
 }
 
 .btn-xl {
     padding: 20px 40px;
-    border-color: #0097a7;
+    border-color: #fed136;
     border-radius: 3px;
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 18px;
     font-weight: 700;
     color: #fff;
-    background-color: #0097a7;
+    background-color: #fed136;
 }
 
 .btn-xl:hover,
@@ -160,12 +160,12 @@ fieldset[disabled] .btn-xl:active,
 .btn-xl.disabled.active,
 .btn-xl[disabled].active,
 fieldset[disabled] .btn-xl.active {
-    border-color: #0097a7;
-    background-color: #0097a7;
+    border-color: #fed136;
+    background-color: #fed136;
 }
 
 .btn-xl .badge {
-    color: #0097a7;
+    color: #fed136;
     background-color: #fff;
 }
 
@@ -176,7 +176,7 @@ fieldset[disabled] .btn-xl.active {
 
 .navbar-default .navbar-brand {
     font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
-    color: #0097a7;
+    color: #fed136;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -191,8 +191,8 @@ fieldset[disabled] .btn-xl.active {
 }
 
 .navbar-default .navbar-toggle {
-    border-color: #0097a7;
-    background-color: #0097a7;
+    border-color: #fed136;
+    background-color: #fed136;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -201,7 +201,7 @@ fieldset[disabled] .btn-xl.active {
 
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-    background-color: #0097a7;
+    background-color: #fed136;
 }
 
 .navbar-default .nav li a {
@@ -215,13 +215,13 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default .nav li a:hover,
 .navbar-default .nav li a:focus {
     outline: 0;
-    color: #0097a7;
+    color: #fed136;
 }
 
 .navbar-default .navbar-nav>.active>a {
     border-radius: 0;
     color: #fff;
-    background-color: #0097a7;
+    background-color: #fed136;
 }
 
 .navbar-default .navbar-nav>.active>a:hover,
@@ -494,7 +494,7 @@ section h3.section-subheading {
     border-radius: 100%;
     text-align: center;
     color: #fff;
-    background-color: #0097a7;
+    background-color: #fed136;
 }
 
 .timeline>li .timeline-image h4 {
@@ -1048,7 +1048,7 @@ section#services {
 
 .iot-p {
     font-size: 19px;
-    text-align: left;
+    text-align: justify;
     max-width: 570px;
     line-height: normal;    
 }
@@ -1085,7 +1085,7 @@ section#contact .form-group textarea.form-control {
 }
 
 section#contact .form-control:focus {
-    border-color: #0097a7;
+    border-color: #fed136;
     box-shadow: none;
 }
 
@@ -1152,7 +1152,7 @@ section#participe .form-group textarea.form-control {
 }
 
 section#participe .form-control:focus {
-    border-color: #0097a7;
+    border-color: #fed136;
     box-shadow: none;
 }
 
@@ -1234,7 +1234,7 @@ ul.social-buttons li a {
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
-    background-color: #0097a7;
+    background-color: #fed136;
 }
 
 .btn:focus,
@@ -1322,12 +1322,12 @@ ul.social-buttons li a:active {
 
 ::-moz-selection {
     text-shadow: none;
-    background: #0097a7;
+    background: #fed136;
 }
 
 ::selection {
     text-shadow: none;
-    background: #0097a7;
+    background: #fed136;
 }
 
 img::selection {
@@ -1339,5 +1339,5 @@ img::-moz-selection {
 }
 
 body {
-    webkit-tap-highlight-color: #0097a7;
+    webkit-tap-highlight-color: #fed136;
 }

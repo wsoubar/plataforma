@@ -1,5 +1,5 @@
 // app/routes.js
-
+var path = require('path');
 // grab the nerd model we just created
 var Personagem = require('./models/personagem');
 
@@ -57,7 +57,7 @@ module.exports = function(app) {
         console.log(req.body.email);
         console.log(req.body.message);
         
-        res.status(600);
+        //res.status(600);
         //url = req.url;
         res.json({ sucesso: true, mensagem: 'realizado com sucesso' });        
     });
@@ -67,7 +67,7 @@ module.exports = function(app) {
     // frontend routes =========================================================
     // route to handle all angular requests
     app.get('*', function(req, res) {
-        res.sendfile('./public/index.html'); // load our public/index.html file
+        res.sendFile(path.join(__dirname, '../public', 'index.html'));
     });
 
 };
