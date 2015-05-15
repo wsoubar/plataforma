@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="plataformaApp">
+<html lang="en">
 
 <head>
 
@@ -18,6 +18,7 @@
     <link href="css/agency.css" rel="stylesheet">
     <link href="css/carousel.css" rel="stylesheet">
     <link href="css/feed.css" rel="stylesheet">
+    <link href="css/perfil.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -36,7 +37,7 @@
 
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top" class="index" ng-app="plataformaApp" ng-controller="mainCtrl">
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -74,10 +75,10 @@
                         <a class="page-scroll" href="#participe">Participe</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">Feed</a>
+                        <a class="page-scroll" href="#about"><span ng-show="!logado">Feed</span><span ng-show="logado">Bruna</span></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#team">Login</a>
+                        <a class="page-scroll" href="" ng-click="logado = !logado"><span ng-show="!logado">Login</span><span ng-show="logado">Logout</span></a>
                     </li>
                 </ul>
             </div>
@@ -85,7 +86,7 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    
+    <div ng=init"logado = 0"></div>
     <!-- Header -->
     <header>
         <div class="container">
@@ -400,8 +401,34 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4" ng-hide="true"></div>
-                    <div class="col-md-12">
+
+                <!-- ###### Perfil ###### -->
+                <div class=" col-md-4" ng-show="logado == 1">
+                    <div class="card hovercard">
+                        <div class="cardheader">
+
+                        </div>
+                        <div class="avatar">
+                            <img alt="" src="http://lorempixel.com/100/100/people/9/">
+                        </div>
+                        <div class="info">
+                            <div class="title">
+                                Bruna Santos
+                            </div>
+                            <div class="desc">Passionate designer</div>
+                            <div class="desc">Curious developer</div>
+                            <div class="desc">Tech geek</div>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary btn-sm">editar</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ###### fim perfil ####### -->
+
+                <!-- <div class="col-md-4" ng-hide="true"></div> -->
+                    <div ng-class="{'col-md-12' : !logado , 'col-md-8' : logado}" >
                          <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <span class="glyphicon glyphicon-comment"></span> Comentários

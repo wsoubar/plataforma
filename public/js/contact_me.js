@@ -31,17 +31,19 @@ $(function() {
                 cache: false,
                 success: function(data) {
                     console.log('Sucesso');
-                    // Success message
-                    $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-success')
-                        .append("<strong>Muito obrigado, entraremos em contato em breve. </strong>");
-                    $('#success > .alert-success')
-                        .append('</div>');
+                    if (data.sucesso) {
+                        // Success message
+                        $('#success').html("<div class='alert alert-success'>");
+                        $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                            .append("</button>");
+                        $('#success > .alert-success')
+                            .append("<strong>Muito obrigado, entraremos em contato em breve. </strong>");
+                        $('#success > .alert-success')
+                            .append('</div>');
 
-                    //clear all fields
-                    $('#contactForm').trigger("reset");
+                        //clear all fields
+                        $('#contactForm').trigger("reset");
+                    }
                 },
                 error: function(err) {
                     console.log('Erro: ' + err);
