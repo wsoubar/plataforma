@@ -75,7 +75,7 @@
                         <a class="page-scroll" href="#participe">Participe</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about"><span ng-show="!logado">Feed</span><span ng-show="logado">Bruna</span></a>
+                        <a class="page-scroll" href="#about"><span ng-show="!logado">Feed</span><span ng-show="logado">Mulher Gato</span></a>
                     </li>
                     <li>
                         <a class="page-scroll" href="" ng-click="logado = !logado"><span ng-show="!logado">Login</span><span ng-show="logado">Logout</span></a>
@@ -356,7 +356,7 @@
                 <div class="col-lg-12">
                     <form name="sentParticipante" id="participanteForm" novalidate>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Nome" id="name" required data-validation-required-message="Por favor preencha o seu nome.">
                                     <p class="help-block text-danger"></p>
@@ -367,6 +367,16 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="tel" class="form-control" placeholder="Telefone" id="phone" required data-validation-required-message="Por favor, preencha com o seu telefone.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Senha" id="senha" required data-validation-required-message="Por favor preencha a senha.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" placeholder="Confirmar senha" id="confirmarSenha" required data-validation-required-message="Por favor, preencha a confirmação da senha.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -391,6 +401,7 @@
     </section>
 
     <!-- About Section -->
+    <!-- <span id="perfilx"></span> -->
     <section id="about">
         <div class="container">
             <div class="row">
@@ -409,11 +420,11 @@
 
                         </div>
                         <div class="avatar">
-                            <img alt="" src="http://lorempixel.com/100/100/people/9/">
+                            <img alt="" src="img/about/mg.jpg">
                         </div>
                         <div class="info">
                             <div class="title">
-                                Bruna Santos
+                                Mulher Gato
                             </div>
                             <div class="desc">Passionate designer</div>
                             <div class="desc">Curious developer</div>
@@ -551,6 +562,7 @@
     </section>
 
     <!-- Team Section -->
+    <!--
     <section id="team" class="bg-light-gray">
         <div class="container">
             <div class="row">
@@ -613,7 +625,7 @@
             </div>
         </div>
     </section>
-
+    
     <footer>
         <div class="container">
             <div class="row">
