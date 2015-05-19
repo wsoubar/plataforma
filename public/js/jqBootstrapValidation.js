@@ -699,6 +699,7 @@
 				name: "match",
 				init: function ($this, name) {
 					var element = $this.parents("form").first().find("[name=\"" + $this.data("validation" + name + "Match") + "\"]").first();
+          //console.log(element);
 					element.bind("validation.validation", function () {
 						$this.trigger("change.validation", {submitting: true});
 					});

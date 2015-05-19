@@ -44,6 +44,38 @@ module.exports = function(app) {
     });
 
 
+    // icluir desafio
+    app.post('/salvaParticipante', function(req, res) {
+
+        var u = new Usuario({
+            nome: req.body.name,
+            email: req.body.email,
+            telefone: req.body.phone,
+            senha: req.body.senha
+        });
+        
+        console.log('senhap: ' + req.body.senhap);
+        console.log('usuario -> ', u);
+
+        u.save(function(err) {
+            if (err) {
+                console.log(err);
+                return handleError(err);
+            }
+            console.log('participante salvo!');
+
+            Usuario.findById(u, function(err, usuario) {
+                if (err) {
+                    console.log(err);
+                    return handleError(err);
+                }
+                console.log(usuario);
+            });
+        });
+        res.json({ sucesso: true, mensagem: 'realizado com sucesso' });
+    });
+
+
 
 
 
@@ -52,5 +84,19 @@ module.exports = function(app) {
     app.get('*', function(req, res) {
         res.sendFile(path.join(__dirname, '../public', 'index.html'));
     });
+
+    app.use(function(err, req, res) {
+        switch (err.name) {
+            case 'CastError':
+                console.log(err);
+                res.status(400); // Bad Request
+                return res.send('400');
+            default:
+                console.log(err);
+                res.status(500); // Internal server error
+                return res.send('500');
+        }
+    });
+
 
 };
