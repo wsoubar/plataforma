@@ -9,24 +9,24 @@ $(function() {
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
-            var name = $("input#name").val();
+            var nome = $("input#name").val();
             var email = $("input#email").val();
-            var phone = $("input#phone").val();
-            var message = $("textarea#message").val();
-            var firstName = name; // For Success/Failure Message
+            var fone = $("input#phone").val();
+            var desafio = $("textarea#message").val();
+            var firstName = nome; // For Success/Failure Message
             // Check for white space in name for Success/Fail message
             if (firstName.indexOf(' ') >= 0) {
-                firstName = name.split(' ').slice(0, -1).join(' ');
+                firstName = nome.split(' ').slice(0, -1).join(' ');
             }
             console.log('antes do ajax!');
             $.ajax({
-                url: "/salvaDesafio",
+                url: "/desafio",
                 type: "POST",
-                data: {
-                    name: name,
-                    phone: phone,
+                data: {desafio: {
+                    nome: nome,
                     email: email,
-                    message: message
+                    telefone: fone,
+                    desafio: desafio }
                 },
                 cache: false,
                 success: function(data) {
@@ -98,7 +98,7 @@ $(function() {
             }
             console.log('antes do ajax!');
             $.ajax({
-                url: "/salvaParticipante",
+                url: "/participante",
                 type: "POST",
                 data: {
                     name: name,

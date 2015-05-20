@@ -19,6 +19,7 @@
     <link href="css/carousel.css" rel="stylesheet">
     <link href="css/feed.css" rel="stylesheet">
     <link href="css/perfil.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -78,7 +79,7 @@
                         <a class="page-scroll" href="#about"><span ng-show="!logado">Feed</span><span ng-show="logado">Mulher Gato</span></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#loginModal" data-toggle="modal" ng-click="logado = !logado"><span ng-show="!logado">Login</span><span ng-show="logado">Logout</span></a>
+                        <a class="page-scroll" href="#loginModal" data-toggle="modal"><span ng-show="!logado">Login</span><span ng-show="logado">Logout</span></a>
                     </li>
                 </ul>
             </div>
@@ -270,34 +271,6 @@
         </div>
     </section>
 
-    <!-- Clients Aside -->
-    <aside class="clients">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="img/logos/envato.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </aside>
-    
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
@@ -745,28 +718,31 @@
                 </div>
             </div>
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4 col-md-offset-4">
-                        <h1 class="text-center login-title">Sign in to continue to Bootsnipp</h1>
-                        <div class="account-wall">
-                            <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-                                alt="">
-                            <form class="form-signin">
-                            <input type="text" class="form-control" placeholder="Email" required autofocus>
-                            <input type="password" class="form-control" placeholder="Password" required>
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">
-                                Sign in</button>
-                            <label class="checkbox pull-left">
-                                <input type="checkbox" value="remember-me">
-                                Remember me
+                <div class="col-md-3"></div>
+                <div class="card card-container col-md-6">
+                    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                    <p id="profile-name" class="profile-name-card"></p>
+                    <form class="form-signin">
+                        <span id="reauth-email" class="reauth-email"></span>
+                        <input type="email" id="inputEmail" class="form-control login-control" placeholder="Email address" required autofocus>
+                        <input type="password" id="inputPassword" class="form-control login-control" placeholder="Password" required>
+                        <div id="remember" class="checkbox text-left">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Lembrar de mim
                             </label>
-                            <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
-                            </form>
                         </div>
-                        <a href="#" class="text-center new-account">Create an account </a>
-                    </div>
-                </div>
-            </div>
+                        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Login</button>
+                    </form><!-- /form -->
+                    <span class=" text-left">
+                    <a href="#" class="forgot-password">
+                        Esqueci minha senha
+                    </a>
+                    </span>
+                </div><!-- /card-container -->
+                <div class="col-md-3"></div>
+
+            </div><!-- /container -->
         </div>
     </div>
     <!-- jQuery -->

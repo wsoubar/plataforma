@@ -1,7 +1,7 @@
 // app/routes.js
 var path = require('path');
 
-var Desafio = require('./models/desafio');
+var desafioDao = require('./daos/desafioDao');
 var Usuario = require('./models/usuario');
 var Feed = require('./models/feed');
 
@@ -9,43 +9,19 @@ module.exports = function(app) {
 
     // server routes ===========================================================
 
-    // icluir desafio
-    app.post('/salvaDesafio', function(req, res) {
 
-        var d = new Desafio({
-            nome: req.body.name,
-            email: req.body.email,
-            telefone: req.body.phone,
-            desafio: req.body.message
-        });
-        
-        d.save(function(err) {
-            if (err) {
-                console.log(err);
-                return handleError(err);
-            }
-            console.log('desafio salvo!');
-
-            Desafio.findById(d, function(err, desafio) {
-                if (err) {
-                    console.log(err);
-                    return handleError(err);
-                }
-                console.log(desafio);
-            });
-        });
-        res.json({ sucesso: true, mensagem: 'realizado com sucesso' });
-/*        } catch (ex) {
-            console.log('Err: ' + err); 
-            res.status(503);
-            res.json({ sucesso: false, mensagem: 'realizado com sucesso', err: err });
-        }
-*/
+    app.get('/teste', function(req, res){
+        res.json({nome: 'Wagner', sobrenome: 'Barbosa'});
     });
 
+    // DESAFIO
+    app.post('/desafio', desafioDao.create);
+    app.put('/desafio/:id', desafioDao.update);
+    app.get('/desafio/:id', desafioDao.findOne);
+    app.get('/desafio', desafioDao.findAll);
+    app.delete('/desafio/:id', desafioDao.delete);
 
-    // icluir desafio
-    app.post('/salvaParticipante', function(req, res) {
+    app.post('/participante', function(req, res) {
 
         var u = new Usuario({
             nome: req.body.name,
@@ -54,8 +30,8 @@ module.exports = function(app) {
             senha: req.body.senha
         });
         
-        console.log('senhap: ' + req.body.senhap);
-        console.log('usuario -> ', u);
+        //console.log('senhap: ' + req.body.senhap);
+        //console.log('usuario -> ', u);
 
         u.save(function(err) {
             if (err) {
@@ -69,7 +45,7 @@ module.exports = function(app) {
                     console.log(err);
                     return handleError(err);
                 }
-                console.log(usuario);
+                //console.log(usuario);
             });
         });
         res.json({ sucesso: true, mensagem: 'realizado com sucesso' });
