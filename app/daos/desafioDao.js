@@ -1,4 +1,5 @@
 // desafioDao.js
+var mongoose = require('mongoose');
 var Desafio = require('../models/desafio');
 
 var desafios = {
@@ -24,8 +25,12 @@ var desafios = {
 	findOne : function(req, res) {
 
         var id = req.params.id;
-
-        Desafio.find({id: id}, function(err, desafio) {
+        //mongoose.Schema.Types.ObjectId
+        //console.log('id: ' + id);
+        
+        Desafio.findOne({_id: id}, function(err, desafio) {
+            //console.log('err', err);
+            //console.log('desafio:', desafio);
             if (desafio) {
                 res.json({ sucesso: true, mensagem: 'realizado com sucesso', desafio: desafio });
             } else {
@@ -47,6 +52,7 @@ var desafios = {
 
 	update  : function(req, res) {
         var id = req.params.id;
+        
         var desafioAtu = {
             nome: req.body.nome,
             email: req.body.email,
@@ -54,7 +60,7 @@ var desafios = {
             desafio: req.body.desafio
         };
 
-        Desafio.findOneAndUpdate({id:id}, desafioAtu,function(err, desafio) {
+        Desafio.findOneAndUpdate({_id: id}, desafioAtu,function(err, desafio) {
             if (desafio) {
                 res.json({ sucesso: true, mensagem: 'realizado com sucesso', desafio: desafio });
             } else {
@@ -68,7 +74,7 @@ var desafios = {
         
         var id = req.params.id;
 
-        Desafio.remove({id: id}, function(err, desafio) {
+        Desafio.findOneAndRemove({_id: id}, function(err) {
             if (err) {
                 res.json({ sucesso: false, mensagem: 'Falha ao tentar excluir um desafio', erro: err });
             } else {
