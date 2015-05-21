@@ -23,17 +23,26 @@ var usuarios = {
     },
 
     findOne : function(req, res) {
-
         var id = req.params.id;
-
         Usuario.findOne({_id: id}, function(err, user) {
-
             if (user) {
                 res.json({ sucesso: true, mensagem: 'realizado com sucesso', usuario: user });
             } else {
                 res.json({ sucesso: false, mensagem: 'Falha ao tentar buscar o usuario', erro: err });
             }
+        });
+    },
 
+    login : function(req, res) {
+        var email = req.body.email;
+        var senha = req.body.senha;
+
+        Usuario.findOne({email: email, senha: senha }, function(err, user) {
+            if (user) {
+                res.json({ sucesso: true, mensagem: 'Login realizado com sucesso', usuario: user });
+            } else {
+                res.json({ sucesso: false, mensagem: 'Usuário ou senha inválidos', erro: err });
+            }
         });
     },
 
@@ -49,21 +58,18 @@ var usuarios = {
 
     update  : function(req, res) {
         var id = req.params.id;
-        
         var usuAtu = {
             nome: req.body.nome,
             email: req.body.email,
             telefone: req.body.telefone,
             senha: req.body.senha
         };
-
         Usuario.findOneAndUpdate({_id: id}, usuAtu,function(err, user) {
             if (user) {
                 res.json({ sucesso: true, mensagem: 'realizado com sucesso', usuario: user });
             } else {
                 res.json({ sucesso: false, mensagem: 'Falha ao tentar buscar o usuario', erro: err });
             }
-            //console.log(desafio);
         });
     },
 

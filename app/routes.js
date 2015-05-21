@@ -32,9 +32,12 @@ module.exports = function(app) {
     app.post('/feed', feedDao.create);
     app.put('/feed/:id', feedDao.update);
     app.get('/feed/:id', feedDao.findOne);
+    app.get('/feed/limite/:qtd', feedDao.findLimite);
     app.get('/feed', feedDao.findAll);
     app.delete('/feed/:id', feedDao.delete);
 
+
+    app.post('/login', usuarioDao.login);
 
     // frontend routes =========================================================
     // route to handle all angular requests

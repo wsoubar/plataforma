@@ -75,11 +75,17 @@
                     <li>
                         <a class="page-scroll" href="#participe">Participe</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#about"><span ng-show="!logado">Feed</span><span ng-show="logado">Mulher Gato</span></a>
+                    <li id="li-feed">
+                        <a class="page-scroll" href="#about">Feed</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#loginModal" data-toggle="modal"><span ng-show="!logado">Login</span><span ng-show="logado">Logout</span></a>
+                    <li id="li-perfil" style="display:none">
+                        <a class="page-scroll" href="#about"></a>
+                    </li>
+                    <li id="li-login">
+                        <a class="page-scroll" href="#loginModal" data-toggle="modal">Login</a>
+                    </li>
+                    <li id="li-logout" style="display:none">
+                        <a class="page-scroll" href="" id="mn-logout">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -92,7 +98,7 @@
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Seja Bem Vindo!</div>
+                <div class="intro-lead-in">{{welcome}}</div>
                 <div class="intro-heading">Internet das Coisas</div>
                 <!-- <a href="#services" class="page-scroll btn btn-xl">Saiba mais</a> -->
 
@@ -101,14 +107,15 @@
                 <div class='col-md-offset-2 col-md-8'>
                   <div class="carousel slide" data-ride="carousel" id="quote-carousel">
                     <!-- Bottom Carousel Indicators -->
-                    <ol class="carousel-indicators">
+                    <ol class="carousel-indicators" id="ol-carousel-indicators">
+                        <!-- <li data-target="#quote-carousel" data-slide-to="$index"  ng-repeat="feed in homeFeeds" /> -->
                       <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
                       <li data-target="#quote-carousel" data-slide-to="1"></li>
                       <li data-target="#quote-carousel" data-slide-to="2"></li>
                     </ol>
                     
                     <!-- Carousel Slides / Quotes -->
-                    <div class="carousel-inner">
+                    <div class="carousel-inner" id="carousel-quotes">
                     
                       <!-- Quote 1 -->
                       <div class="item active">
@@ -380,7 +387,7 @@
             <div class="row">
 
                 <!-- ###### Perfil ###### -->
-                <div class=" col-md-4" ng-show="logado == 1">
+                <div class=" col-md-4" style="display:none" id="perfil-div">
                     <div class="card hovercard">
                         <div class="cardheader">
 
@@ -389,46 +396,26 @@
                             <img alt="" src="img/about/mg.jpg">
                         </div>
                         <div class="info">
-                            <div class="title">
-                                Mulher Gato
+                            <div class="title" id="perfil-nome">
+                                {{usuario.nome}}
                             </div>
-                            <div class="desc">Passionate designer</div>
-                            <div class="desc">Curious developer</div>
-                            <div class="desc">Tech geek</div>
+                            <div class="desc" id="perfil-email">{{usuario.email}}</div>
                         </div>
+                        <!--
                         <div>
                             <button type="button" class="btn btn-primary btn-sm">editar</button>
                         </div>
+                        -->
                     </div>
 
                 </div>
                 <!-- ###### fim perfil ####### -->
 
                 <!-- <div class="col-md-4" ng-hide="true"></div> -->
-                    <div ng-class="{'col-md-12' : !logado , 'col-md-8' : logado}" >
+                    <div class="col-md-12" id="feed-div"> <!-- ng-class="{'col-md-12' : !logado , 'col-md-8' : logado}" > -->
                          <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <span class="glyphicon glyphicon-comment"></span> Comentários
-                                <!--
-                                <div class="btn-group pull-right">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        <span class="glyphicon glyphicon-chevron-down"></span>
-                                    </button>
-                                    <ul class="dropdown-menu slidedown">
-                                        <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">
-                                        </span>Refresh</a></li>
-                                        <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-ok-sign">
-                                        </span>Available</a></li>
-                                        <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">
-                                        </span>Busy</a></li>
-                                        <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-time"></span>
-                                            Away</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>
-                                            Sign Out</a></li>
-                                    </ul>                               
-                                </div>
-                                -->
                             </div>
 
                             <div class="panel-body panel-body-feed">
@@ -480,36 +467,6 @@
                                             </p>
                                         </div>
                                     </li>
-                                    <!--
-                                    <li class="right clearfix"><span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                        <div class="chat-body clearfix">
-                                            <div class="header">
-                                                <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
-                                                <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                                dolor, quis ullamcorper ligula sodales.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="left clearfix"><span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                        <div class="chat-body clearfix">
-                                            <div class="header">
-                                                <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                                dolor, quis ullamcorper ligula sodales.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    -->
                                 </ul>
                             </div>
                             <div class="panel-footer">
@@ -645,66 +602,44 @@
         </div>
     </div>
 
-    <div class="modal fade" id="loginModal" tabindex="-1" role="modal" aria-hidden="true" ng-controller="loginCtrl">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="modal" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-8 col-md-offset-2"> <!-- col-md-offset-3 col-sm-8 col-sm-offset-2 -->                    
                 <div class="panel panel-info" >
-                        <div class="panel-heading">
-                            <div class="panel-title">Login</div>
-                            <div style="float:right; font-size: 80%; position: relative; top:-10px">
+                    <div class="panel-heading">
+                        <div class="panel-title">Login</div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px">
                             <button type="button" class="close" data-dismiss="modal" style="margin-left: 20px; margin-top: -10px;">&times;</button>
+                        </div>
+                    </div>     
+
+                    <div style="padding:30px 20px 0px 20px;" class="panel-body" >
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                        <form id="loginform" name="sendLogin" class="form-horizontal" novalidate>
+                            <div style="margin-bottom: 25px" class="form-group">
+                                <input id="username" type="email" class="form-control" value="" placeholder="Email" required data-validation-required-message="Por favor preencha com seu email.">
+                                <p class="help-block text-danger"></p>                                        
                             </div>
-                        </div>     
-
-                        <div style="padding-top:30px" class="panel-body" >
-
-                            <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                                
-                            <form id="loginform" class="form-horizontal" role="form" novalidate>
-                                        
-                                <div style="margin-bottom: 25px" class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email" ng-model="username">                                        
-                                        </div>
-                                    
-                                <div style="margin-bottom: 25px" class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <input id="login-password" type="password" class="form-control" name="password" placeholder="password" ng-model="password">
-                                        </div>
-                                        
-
-                                    
-                                <div class="input-group">
-                                          <div class="checkbox">
-                                            <label>
-                                              <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                                            </label>
-                                          </div>
-                                        </div>
-
-
-                                    <div style="margin-top:10px" class="form-group">
-                                        <!-- Button -->
-
-                                        <div class="col-sm-12 controls">
-                                          <button type="submit" id="btn-login" class="btn btn-success" ng-click="loginCtrl.doLogin()">Login {{10 + 10}}</button>
-                                          <a id="btn-fblogin" href="#" class="btn btn-primary fb-btn">Login com o Facebook</a>
-
-                                        </div>
-                                    </div>
-
-
-                                </form>     
-
-
-
-                            </div>                     
-                        </div>  
+                            <div style="margin-bottom: 25px" class="form-group">
+                                <input id="password" type="password" class="form-control" placeholder="Senha" required data-validation-required-message="Por favor preencha com sua senha.">
+                                <p class="help-block text-danger"></p>                                        
+                            </div>
+                            <div style="margin-top:10px" class="form-group">
+                                <!-- Button -->
+                               <div class="col-sm-12 controls">
+                                  <button type="submit" id="btn-login" class="btn btn-success">Login</button>
+                                  <!-- <a id="btn-fblogin" href="#" class="btn btn-primary fb-btn">Login com o Facebook</a> -->
+                                </div>
+                            </div>
+                        </form>     
+                    </div>                     
+                </div>  
             </div>
         </div>
     </div>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    <script src="js/jquery.cookie.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
@@ -712,9 +647,10 @@
     <!-- AngularJS -->
     <script src="libs/angular/angular.min.js"></script>
     <script src="js/app.js"></script>
+    
 
     <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
 

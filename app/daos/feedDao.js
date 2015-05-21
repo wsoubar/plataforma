@@ -5,11 +5,20 @@ var ObjectId = mongoose.Types.ObjectId;
 var feeds = {
     // cria um novo usuario
     create  : function(req, res) {
+
+        if (!req.body.texto || !req.body.usuarioId) {
+            res.json({ sucesso: false, mensagem: 'Falha ao tentar criar um novo feed', erro: {mensagem: 'Parâmetros inválidos'} });
+            return;
+        }
+
         var feed = new Feed({
             texto: req.body.texto,
             usuario: new ObjectId(req.body.usuarioId)
         });
         
+        console.log('feed >>> ', feed);
+        console.log('body >>> ', req.body);
+
         feed.save(function(err) {
             if (err) {
                 res.json({ sucesso: false, mensagem: 'Falha ao tentar criar um novo feed', erro: err });
@@ -33,6 +42,22 @@ var feeds = {
                 res.json({ sucesso: false, mensagem: 'Falha ao tentar buscar o feed', erro: err });
             }
 
+        });
+    },
+
+    findLimite : function(req, res) {
+
+        var qtd = Number(req.params.qtd);
+
+        Feed.find({}).
+        sort({data: 'desc'}).
+        limit(qtd).
+        populate('usuario').exec(function(err, feeds) {
+            if (feeds) {
+                res.json({ sucesso: true, mensagem: 'realizado com sucesso', feeds: feeds });
+            } else {
+                res.json({ sucesso: false, mensagem: 'Falha ao tentar buscar os feeds', erro: err });
+            }
         });
     },
 
