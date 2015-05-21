@@ -14,5 +14,16 @@
 
 	}]);
 
+
+    app.controller('loginCtrl', ['$scope', '$http', function($scope, $http) {
+
+        this.doLogin = function(){
+
+            alert('Login');
+
+        };
+
+    }]);
+
 })();
 
