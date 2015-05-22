@@ -5,24 +5,10 @@
 	app.controller('mainCtrl', ['$scope', '$http', function($scope, $http) {
 
         $scope.welcome = 'Seja Bem Vindo!';
-
         $scope.usuario = undefined;
-
-        $scope.homeFeeds = [];
+        $scope.feeds = [];
+        $scope.feedsDestaque = [];
         
-        $http.get('http://localhost:8080/feed/limite/3').
-            success(function(data, status) {
-                if (data.sucesso) {
-                    $scope.homeFeeds = data.feeds;
-                    console.log('home feeds', data.feeds);
-                }
-            }).
-            error(function(err, status) {
-                console.log('erro ao consultar feeds para home', err);
-            });
-
-        //this.getHomeFeeds();
-
         $scope.doLogin = function(user) {
             $scope.usuario = user;
             console.log('usuario', user);
@@ -33,12 +19,11 @@
             $scope.usuario = undefined;
         };
 
-        $scope.getFeeds = function(qtd) {
-
+        $scope.getFeeds = function(qtd, cb) {
             $http.get('http://localhost:8080/feed/limite/'+qtd).
                 success(function(data, status) {
                     if (data.sucesso) {
-                        $scope.homeFeeds = data.feeds;
+                        cb(data.feeds);
                         console.log('home feeds', data.feeds);
                     }
                 }).
@@ -47,14 +32,21 @@
                 });
         };
 
-        $scope.buscaFeeds = function(){
-            $scope.getFeeds(30);
+        $scope.buscaFeeds = function(cb){
+            $scope.getFeeds(30, cb);
         };
 
-        $scope.buscaFeedsDestaque = function(){
-            $scope.getFeeds(3);
+        $scope.buscaFeedsDestaque = function(cb){
+            $scope.getFeeds(3, cb);
         };
 
+        $scope.buscaFeeds(function(feeds){
+            $scope.feeds = feeds;
+        });
+
+        $scope.buscaFeedsDestaque(function(feeds){
+            $scope.feedsDestaque = feeds;
+        });
 
 	}]);
 

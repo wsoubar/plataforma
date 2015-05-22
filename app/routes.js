@@ -40,10 +40,22 @@ module.exports = function(app) {
     app.post('/login', usuarioDao.login);
 
     // frontend routes =========================================================
-    // route to handle all angular requests
-    app.get('*', function(req, res) {
+    app.get('/', function(req, res) {
         res.sendFile(path.join(__dirname, '../public', 'index.html'));
     });
 
+    app.get('/me', ensureAuthorized, usuarioDao.findByToken);
 
+    function ensureAuthorized(req, res, next) {
+        var bearerToken;
+        var bearerHeader = req.headers["authorization"];
+        if (typeof bearerHeader !== 'undefined') {
+            var bearer = bearerHeader.split(" ");
+            bearerToken = bearer[1];
+            req.token = bearerToken;
+            next();
+        } else {
+            res.send(403);
+        }
+    }    
 };
