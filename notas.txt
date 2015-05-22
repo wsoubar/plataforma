@@ -4,3 +4,4 @@ http://thejackalofjavascript.com/architecting-a-restful-node-js-app/
 
 http://code.tutsplus.com/pt/tutorials/token-based-authentication-with-angularjs-nodejs--cms-22543
 
+https://auth0.com/blog/2014/12/02/using-json-web-tokens-as-api-keys/
