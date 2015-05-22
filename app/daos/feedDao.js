@@ -16,9 +16,6 @@ var feeds = {
             usuario: new ObjectId(req.body.usuarioId)
         });
         
-        console.log('feed >>> ', feed);
-        console.log('body >>> ', req.body);
-
         feed.save(function(err) {
             if (err) {
                 res.json({ sucesso: false, mensagem: 'Falha ao tentar criar um novo feed', erro: err });

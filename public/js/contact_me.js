@@ -210,13 +210,7 @@ $(function() {
     });
 
     function doLogin(user) {
-        //alert(JSON.stringify(data));
-        //localStorage.setItem("isAuth", "1");
-        //localStorage.setItem("usuario", JSON.stringify(user));
-
-        $.cookie('iAuth', 1);
-        $.cookie('usuario', user);
-        $('#loginModal').modal('hide');
+/*        $('#loginModal').modal('hide');
 
         $('#li-login').hide();
         $('#li-logout').show();
@@ -225,25 +219,20 @@ $(function() {
         $('#li-perfil>a').html(firstName(user.nome));
         $('#li-perfil').show();
 
-        $('#feed-div').removeClass('col-md-12').addClass('col-md-8');
 
         $('#perfil-div').show();
-
-        console.log('angularScope', angularScope);
-        // atualiza angularJS
+*/
+        $('#loginModal').modal('hide');
+        // $('#li-perfil>a').html(firstName(user.nome));
+        // $('#feed-div').removeClass('col-md-12').addClass('col-md-8');
         angularScope.doLogin(user);
         angularScope.$apply();
-        console.log('angularScope sssss');
     }
 
 
     function doLogout() {
 
-        //localStorage.setItem("isAuth", "0");
-        //localStorage.removeItem("usuario");
-        //$('#loginModal').modal('hide');
-        //console.log('usuario', $.cookie('usuario'));
-        $('#li-logout').hide();
+/*        $('#li-logout').hide();
         $('#li-login').show();
 
         $('#li-perfil>a').html('');
@@ -254,11 +243,12 @@ $(function() {
         $('#perfil-div').hide();
         
         console.log('angularScope', angularScope);
-
+*/
         // atualiza angularJS
-        angularScope.doLogout();
-        angularScope.$apply();
-                console.log('doLogout 5');
+        if (confirm("Sair?")) {
+            angularScope.doLogout();
+            angularScope.$apply();
+        }
 
     }
 
@@ -306,7 +296,7 @@ $(function() {
 
     });
 
-    
+
 
     for (var i = 0; i < 3; i++) {
         console.log('passou aqui '+ i);

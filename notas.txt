@@ -1,2 +1,6 @@
 https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
 
+http://thejackalofjavascript.com/architecting-a-restful-node-js-app/
+
+http://code.tutsplus.com/pt/tutorials/token-based-authentication-with-angularjs-nodejs--cms-22543
+

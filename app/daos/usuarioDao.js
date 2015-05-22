@@ -14,7 +14,8 @@ var usuarios = {
             telefone: req.body.telefone,
             senha: req.body.senha
         });
-        
+        console.log(user);
+
         Usuario.findOne({email: user.email}, function(err, usuario){
             if (err) {
                 res.json({ sucesso: false, mensagem: 'Erro desconhecido', erro: err });
