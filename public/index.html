@@ -78,7 +78,7 @@
                         <a class="page-scroll" href="#about">Feed</a>
                     </li>
                     <li id="li-perfil" ng-show="usuario">
-                        <a class="page-scroll" href="#about">{{ usuario.nome }}</a>
+                        <a class="page-scroll" href="#about">{{ usuario.nome | split : ' ' : 0}}</a>
                     </li>
                     <li id="li-login" ng-hide="usuario">
                         <a class="page-scroll" href="#loginModal" data-toggle="modal">Login</a>
@@ -358,7 +358,7 @@
 
                         </div>
                         <div class="avatar">
-                            <img alt="" src="img/about/mg.jpg">
+                            <img alt="" src="img/perfil/user-profile.png">
                         </div>
                         <div class="info">
                             <div class="title" id="perfil-nome">
@@ -388,7 +388,7 @@
                                     <li class="clearfix" ng-repeat="feed in feeds">
                                         <div class="chat-body clearfix">
                                             <div class="header">
-                                                <strong class="primary-font">{{feed.usuario.nome}}</strong> <small class="pull-right text-muted">
+                                                <strong class="primary-font">{{ feed.usuario.nome }}</strong> <small class="pull-right text-muted">
                                                     <span class="glyphicon glyphicon-time"></span>{{ feed.data | date: 'dd/MM/yyyy HH:mm'}}</small>
                                             </div>
                                             <p>{{feed.texto}}</p>

@@ -6,6 +6,9 @@ var usuarioSchema = new Schema({
 	email: { type: String, required: true, unique: true },
 	telefone: String,
 	senha: String,
+    role: {type: String, default: 'usuario', lowercase: true},
+    foto: String,
+    bio: String,
     ativo: {type: Boolean, default: true},
 	data: {type: Date, default: Date.now}
 }, { collection: 'usuario' });

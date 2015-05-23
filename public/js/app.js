@@ -17,13 +17,13 @@
         $scope.feeds = [];
         $scope.feedsDestaque = [];
 
-        /*
+        
         var intervaloFeedsDestaque = $interval(function(){
                 $scope.buscaFeedsDestaque(function(feeds){
                     $scope.feedsDestaque = feeds;
                 })
-            }, 5000);
-       */
+            }, 300000); // 300000 = 5 minutos
+       
 
         $scope.doLogin = function(loginData) {
             $scope.usuario = loginData.usuario;
@@ -101,6 +101,18 @@
 
 	}]);
 
+
+    app.filter('split', function() {
+        return function(input, splitChar, splitIndex) {
+            
+            //console.log('split filter', input, splitChar, splitIndex, '['+input.split(splitChar)[splitIndex]+']');
+            // do some bounds checking here to ensure it has that index
+            var ret = input.split(splitChar)[splitIndex];
+            //console.log('ret', ret);
+            //return input.split(splitChar)[splitIndex];
+            return ret;
+        }
+    });
 /*
     angular.module('customFilter').filter('cut', function () {
             return function (value, wordwise, max, tail) {

@@ -210,40 +210,14 @@ $(function() {
     });
 
     function doLogin(loginData) {
-/*        $('#loginModal').modal('hide');
-
-        $('#li-login').hide();
-        $('#li-logout').show();
-
-        $('#li-feed').hide();
-        $('#li-perfil>a').html(firstName(user.nome));
-        $('#li-perfil').show();
-
-
-        $('#perfil-div').show();
-*/
         $('#loginModal').modal('hide');
-        // $('#li-perfil>a').html(firstName(user.nome));
-        // $('#feed-div').removeClass('col-md-12').addClass('col-md-8');
+        // atualiza angularJS
         angularScope.doLogin(loginData);
         angularScope.$apply();
     }
 
 
     function doLogout() {
-
-/*        $('#li-logout').hide();
-        $('#li-login').show();
-
-        $('#li-perfil>a').html('');
-        $('#li-perfil').hide();
-        $('#li-feed').show();
-
-        $('#feed-div').removeClass('col-md-8').addClass('col-md-12');
-        $('#perfil-div').hide();
-        
-        console.log('angularScope', angularScope);
-*/
         // atualiza angularJS
         if (confirm("Sair?")) {
             angularScope.doLogout();
@@ -261,17 +235,6 @@ $(function() {
         return firstName;
     }
 
-
-    //alert('loaded!!');
-
- //   if (localStorage.getItem("isaAuth") == "1") {
- //       doLogin(localStorage.getItem("usuario"));
- //   }
- //   alert('fora');
- //  if ($.cookie('isAuth')) {
- //       alert('dentro');
- //       doLogin($.cookie('usuario'));
- //   }
 
     /*When clicking on Full hide fail/success boxes */
     $('#name').focus(function() {
