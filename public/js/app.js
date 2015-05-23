@@ -43,7 +43,7 @@
         };
 
         $scope.getFeeds = function(qtd, cb) {
-            $http.get('http://localhost:8080/feed/limite/'+qtd).
+            $http.get('/feed/limite/'+qtd).
                 success(function(data, status) {
                     if (data.sucesso) {
                         cb(data.feeds);
@@ -69,7 +69,7 @@
             console.log('$scope.usuario', $scope.usuario);
             console.log('$scope.usuario.id', $scope.usuario._id);
 
-            $http.post('http://localhost:8080/feed', feed).
+            $http.post('/feed', feed).
                 success(function(data, status){
                     //console.log('feed adicionado??', data)
                     $scope.buscaFeeds(function(feeds){
