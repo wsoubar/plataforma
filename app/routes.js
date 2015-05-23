@@ -4,6 +4,7 @@ var path = require('path');
 var desafioDao = require('./daos/desafioDao');
 var usuarioDao = require('./daos/usuarioDao');
 var feedDao = require('./daos/feedDao');
+var tokenMw = require('./tokenMiddleware');
 
 module.exports = function(app) {
 
@@ -14,15 +15,24 @@ module.exports = function(app) {
         res.json({nome: 'Wagner', sobrenome: 'Barbosa'});
     });
 
-    // DESAFIO
+    app.get('/feed/limite/:qtd', feedDao.findLimite);
+    app.post('/usuario', usuarioDao.create);
     app.post('/desafio', desafioDao.create);
+    app.post('/login', usuarioDao.login);
+
+
+    // middleware 
+    // rotas abaixo desse middleware terão token validado
+    app.use(tokenMw.tokenMid);
+
+
+    // DESAFIO
     app.put('/desafio/:id', desafioDao.update);
     app.get('/desafio/:id', desafioDao.findOne);
     app.get('/desafio', desafioDao.findAll);
     app.delete('/desafio/:id', desafioDao.delete);
 
     // usuario / participante
-    app.post('/usuario', usuarioDao.create);
     app.put('/usuario/:id', usuarioDao.update);
     app.get('/usuario/:id', usuarioDao.findOne);
     app.get('/usuario', usuarioDao.findAll);
@@ -32,30 +42,15 @@ module.exports = function(app) {
     app.post('/feed', feedDao.create);
     app.put('/feed/:id', feedDao.update);
     app.get('/feed/:id', feedDao.findOne);
-    app.get('/feed/limite/:qtd', feedDao.findLimite);
+//    app.get('/feed/limite/:qtd', feedDao.findLimite);
     app.get('/feed', feedDao.findAll);
     app.delete('/feed/:id', feedDao.delete);
 
-
-    app.post('/login', usuarioDao.login);
 
     // frontend routes =========================================================
     app.get('/', function(req, res) {
         res.sendFile(path.join(__dirname, '../public', 'index.html'));
     });
 
-    app.get('/me', ensureAuthorized, usuarioDao.findByToken);
-
-    function ensureAuthorized(req, res, next) {
-        var bearerToken;
-        var bearerHeader = req.headers["authorization"];
-        if (typeof bearerHeader !== 'undefined') {
-            var bearer = bearerHeader.split(" ");
-            bearerToken = bearer[1];
-            req.token = bearerToken;
-            next();
-        } else {
-            res.send(403);
-        }
-    }    
+    
 };

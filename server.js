@@ -10,13 +10,15 @@ var methodOverride = require('method-override');
 var mongoose = require('mongoose');
     
 // config files
-var db = require('./config/db');
+var config = require('./config/config');
 // set our port
 var port = process.env.PORT || 8080; 
 
 // connect to our mongoDB database 
-// (uncomment after you enter in your own credentials in config/db.js)
-mongoose.connect(db.url); 
+mongoose.connect(config.database); 
+
+// segredo para usar com jwt 
+//app.set('jwtSecret', config.jwtSecret);
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
@@ -30,16 +32,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
 app.use(methodOverride('X-HTTP-Method-Override')); 
-
-// middleware deixa a aplicação ser acessada por domínios diferentes do 
-/*
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-    next();
-});
-*/
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public')); 

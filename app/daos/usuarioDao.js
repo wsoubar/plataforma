@@ -1,9 +1,9 @@
 // desafioDao.js
-var mongoose = require('mongoose');
-var Usuario  = require('../models/usuario');
-var jwt      = require("jsonwebtoken");
-
-var jwtSecret = process.env.JWT_SECRET || 'plataformaIoT';
+var mongoose     = require('mongoose');
+var Usuario      = require('../models/usuario');
+var jwt          = require("jsonwebtoken");
+var config       = require('../../config/config');
+var passwordHash = require('password-hash');
 
 var usuarios = {
     // cria um novo usuario
@@ -12,7 +12,7 @@ var usuarios = {
             nome: req.body.nome,
             email: req.body.email,
             telefone: req.body.telefone,
-            senha: req.body.senha
+            senha: passwordHash.generate(req.body.senha)
         });
         console.log(user);
 
@@ -47,30 +47,25 @@ var usuarios = {
         });
     },
 
-    findByToken : function(req, res) {
-        var id = req.token;
-        Usuario.findOne({token: token}, function(err, user) {
-            if (user) {
-                res.json({ sucesso: true, mensagem: 'realizado com sucesso', usuario: user });
-            } else {
-                res.json({ sucesso: false, mensagem: 'Falha ao tentar buscar o usuario', erro: err });
-            }
-        });
-    },    
-
     login : function(req, res) {
         var email = req.body.email;
         var senha = req.body.senha;
 
-        Usuario.findOne({email: email, senha: senha }, function(err, user) {
+        Usuario.findOne({email: email }, function(err, user) {
+            //if (err) throw err;
+
             if (user) {
-                user.token = jwt.sign(user, jwtSecret);
-                // guarda token do login e retorna 
-                user.save(function(err, user1){
-                    res.json({ sucesso: true, mensagem: 'Login realizado com sucesso', usuario: user1, token: user1.token });
-                });
-            } else {
-                res.json({ sucesso: false, mensagem: 'Usuário ou senha inválidos', erro: err });
+                if (passwordHash.verify(senha, user.senha)) {
+                    // user.token = jwt.sign(user, jwtSecret);
+                    var token = jwt.sign(user, config.jwtSecret, {
+                      expiresInMinutes: 1440 // expires in 24 hours
+                    });
+                    res.json({ sucesso: true, mensagem: 'Login realizado com sucesso', usuario: user, token: token });
+                } else {
+                    res.json({ sucesso: false, mensagem: 'Usuário ou senha inválidos'});    
+                }
+            } else if (err) {
+                res.json({ sucesso: false, mensagem: 'Erro indefinido!', erro: err });
             }
         });
     },

@@ -178,7 +178,7 @@ $(function() {
                 success: function(data) {
                     //console.log('Sucesso');
                     if (data.sucesso) {
-                        doLogin(data.usuario);
+                        doLogin(data);
                     } else {
                         $('#login-alert').html(data.mensagem);
                         $('#login-alert').show();
@@ -209,7 +209,7 @@ $(function() {
         $(this).tab("show");
     });
 
-    function doLogin(user) {
+    function doLogin(loginData) {
 /*        $('#loginModal').modal('hide');
 
         $('#li-login').hide();
@@ -225,7 +225,7 @@ $(function() {
         $('#loginModal').modal('hide');
         // $('#li-perfil>a').html(firstName(user.nome));
         // $('#feed-div').removeClass('col-md-12').addClass('col-md-8');
-        angularScope.doLogin(user);
+        angularScope.doLogin(loginData);
         angularScope.$apply();
     }
 
@@ -289,7 +289,7 @@ $(function() {
 
     // show.bs.modal (before modal show) // shown.bs.modal (after show modal)
     $('#loginModal').on('show.bs.modal', function (e) {
-        console.log('show modal login');
+        //console.log('show modal login');
         $('form[name="sendLogin"]').find("input").val('');
         $('form[name="sendLogin"]').find(".help-block").html('');
         //$('form[name="sendLogin"]').reset();
@@ -297,11 +297,9 @@ $(function() {
     });
 
 
-
+/*
     for (var i = 0; i < 3; i++) {
         console.log('passou aqui '+ i);
     };
-//    $('').html
-//    <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
-
+*/
 });

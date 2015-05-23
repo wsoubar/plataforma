@@ -8,9 +8,11 @@
         $scope.welcome = 'Seja Bem Vindo!';
 
         $scope.usuario = undefined;
+        $scope.token   = undefined;
 
         if ($localStorage.usuario) {
             $scope.usuario = $localStorage.usuario;
+            $scope.token   = $localStorage.token;
         }
         $scope.feeds = [];
         $scope.feedsDestaque = [];
@@ -23,14 +25,21 @@
             }, 5000);
        */
 
-        $scope.doLogin = function(user) {
-            $scope.usuario = user;
-            $localStorage.usuario = user;
+        $scope.doLogin = function(loginData) {
+            $scope.usuario = loginData.usuario;
+            $localStorage.usuario = loginData.usuario;
+            console.log('usuario', loginData.usuario);
+            $scope.token = loginData.token;
+            $localStorage.token = loginData.token;
+            console.log('token', loginData.token);
         };
 
         $scope.doLogout = function() {
-            $scope.usuario = undefined;
+            delete $scope.usuario;
             delete $localStorage.usuario;
+
+            delete $scope.token;
+            delete $localStorage.token;
         };
 
         $scope.getFeeds = function(qtd, cb) {
@@ -52,7 +61,8 @@
 
             var feed = { 
                 texto: $scope.textoComentario,
-                usuarioId: $scope.usuario._id
+                usuarioId: $scope.usuario._id, 
+                token: $scope.token
             };
 
             console.log('$scope.textoComentario', $scope.textoComentario);
