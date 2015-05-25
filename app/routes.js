@@ -1,10 +1,12 @@
 // app/routes.js
+var pjson = require('../package.json');
 var path = require('path');
 
 var desafioDao = require('./daos/desafioDao');
 var usuarioDao = require('./daos/usuarioDao');
 var feedDao = require('./daos/feedDao');
 var tokenMw = require('./tokenMiddleware');
+var setup = require('./setup');
 
 module.exports = function(app) {
 
@@ -12,8 +14,15 @@ module.exports = function(app) {
 
 
     app.get('/teste', function(req, res){
-        res.json({nome: 'Wagner', sobrenome: 'Barbosa'});
+        res.json({ mensagem: 'servidor rodando!!', version: pjson.version });
     });
+
+    // prepara aplicação para primeira execução
+
+    app.get('/setup',setup.run);
+
+
+
 
     app.get('/feed/limite/:qtd', feedDao.findLimite);
     app.post('/usuario', usuarioDao.create);
