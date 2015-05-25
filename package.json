@@ -18,12 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wsoubar/plataforma.git"
+    "url": "https://git.mjv.com.br/inovacao-ti/plataforma-iot.git"
   },
   "author": "Wagner Barbosa",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wsoubar/plataforma/issues"
+    "url": "https://git.mjv.com.br/inovacao-ti/plataforma-iot/issues"
   },
-  "homepage": "https://github.com/wsoubar/plataforma"
+  "homepage": "http://git.mjv.com.br/inovacao-ti/plataforma-iot"
 }
