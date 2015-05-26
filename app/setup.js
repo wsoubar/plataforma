@@ -33,6 +33,27 @@ var setup = {
                         } else {
                             //res.json({ sucesso: true, mensagem: 'realizado com sucesso', usuario: user });
                             console.log('Usuário criado');
+
+                            // FEEDS
+                            for (i = 0; i < textosFeed.length; i++) {
+                                // CADASTRA FEEDS INICIAIS
+                                var feed = new Feed({
+                                    texto: textosFeed[i],
+                                    usuario: user._id
+                                });
+                                
+                                feed.save(function(err) {
+                                    if (err) {
+                                        //res.json({ sucesso: false, mensagem: 'Falha ao tentar criar um novo feed', erro: err });
+                                    } else {
+                                        //console.log('usuario salvo!');
+                                        //res.json({ sucesso: true, mensagem: 'realizado com sucesso', feed: feed });
+                                        console.log('Feed criado!');
+                                    }
+                                });
+                            }
+
+
                         }
                     });
                 }
@@ -40,27 +61,6 @@ var setup = {
         });
 
         console.log('usuario', user);
-
-
-
-        for (i = 0; i < textosFeed.length; i++) {
-            // CADASTRA FEEDS INICIAIS
-            var feed = new Feed({
-                texto: textosFeed[i],
-                usuario: user._id
-            });
-            
-            feed.save(function(err) {
-                if (err) {
-                    //res.json({ sucesso: false, mensagem: 'Falha ao tentar criar um novo feed', erro: err });
-                } else {
-                    //console.log('usuario salvo!');
-                    //res.json({ sucesso: true, mensagem: 'realizado com sucesso', feed: feed });
-                    console.log('Feed criado!');
-                }
-            });
-        }
-
 
         res.json({usuario: user});
     }
