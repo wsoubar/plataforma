@@ -17,9 +17,6 @@ var port = process.env.PORT || 9000;
 // connect to our mongoDB database 
 mongoose.connect(config.database); 
 
-// segredo para usar com jwt 
-//app.set('jwtSecret', config.jwtSecret);
-
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
 app.use(bodyParser.json()); 
