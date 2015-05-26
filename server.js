@@ -5,9 +5,9 @@ var express        = require('express');
 var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
-
-// configuration ===========================================
+var morgan         = require('morgan');
 var mongoose = require('mongoose');
+// configuration ===========================================
     
 // config files
 var config = require('./config/config');
@@ -32,6 +32,16 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public')); 
+
+// morgan loga os requests 
+app.use(morgan('dev'));
+
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    next();
+});
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
