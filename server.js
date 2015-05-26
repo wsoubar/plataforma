@@ -5,9 +5,9 @@ var express        = require('express');
 var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
-
-// configuration ===========================================
+var morgan         = require('morgan');
 var mongoose = require('mongoose');
+// configuration ===========================================
     
 // config files
 var config = require('./config/config');
@@ -16,9 +16,6 @@ var port = process.env.PORT || 9000;
 
 // connect to our mongoDB database 
 mongoose.connect(config.database); 
-
-// segredo para usar com jwt 
-//app.set('jwtSecret', config.jwtSecret);
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json 
@@ -35,6 +32,16 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public')); 
+
+// morgan loga os requests 
+app.use(morgan('dev'));
+
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    next();
+});
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
