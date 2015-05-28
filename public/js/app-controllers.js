@@ -7,7 +7,6 @@
     app.controller('mainCtrl', ['$rootScope', '$scope', '$http', '$interval', '$localStorage', '$location', 
         function($rootScope, $scope, $http, $interval, $localStorage, $location) {
 
-        $scope.feeds = [];
         $scope.feedsDestaque = [];
 
         $scope.welcome = 'Seja Bem Vindo!';
@@ -46,33 +45,6 @@
         };
 
 
-
-        $scope.enviaComentario = function() {
-
-            var feed = { 
-                texto: $scope.textoComentario,
-                usuarioId: $scope.usuario._id, 
-                token: $scope.token
-            };
-
-            console.log('$scope.textoComentario', $scope.textoComentario);
-            console.log('$scope.usuario', $scope.usuario);
-            console.log('$scope.usuario.id', $scope.usuario._id);
-
-            $http.post('/api/feed', feed).
-                success(function(data, status){
-                    //console.log('feed adicionado??', data)
-                    $scope.buscaFeeds(function(feeds){
-                        $scope.feeds = feeds;
-                    });
-                    $scope.textoComentario = '';
-                }).
-                error(function(err){
-                    console.log('erro adicionando feed', err)
-                });
-        };
-
-
         $scope.doLogout = function() {
             console.log('doLogout()');
             delete $rootScope.usuario;
@@ -83,17 +55,9 @@
             $location.path('/');
         };
 
-        $scope.buscaFeeds = function(cb){
-            $scope.getFeeds(30, cb);
-        };
-
         $scope.buscaFeedsDestaque = function(cb){
             $scope.getFeeds(3, cb);
         };
-
-        $scope.buscaFeeds(function(feeds){
-            $scope.feeds = feeds;
-        });
 
         $scope.buscaFeedsDestaque(function(feeds){
             $scope.feedsDestaque = feeds;
@@ -264,10 +228,61 @@
 
     /**
      *
-     * Hackathon Controller
+     * Feed Controller
      * 
      */
-    app.controller('hackathonCtrl', ['$scope', function($scope) {
+    app.controller('feedCtrl', ['$scope', '$http', function($scope, $http) {
+        $scope.feeds = [];
+
+        $scope.enviaComentario = function() {
+
+            if (!$scope.textoComentario) {
+                return;
+            }
+
+            var feed = { 
+                texto: $scope.textoComentario,
+                usuarioId: $scope.usuario._id, 
+                token: $scope.token
+            };
+
+            /*
+            console.log('$scope.textoComentario', $scope.textoComentario);
+            console.log('$scope.usuario', $scope.usuario);
+            console.log('$scope.usuario.id', $scope.usuario._id);
+            */
+
+            $http.post('/api/feed', feed).
+                success(function(data, status){
+                    //console.log('feed adicionado??', data)
+                    $scope.buscaFeeds(function(feeds){
+                        $scope.feeds = feeds;
+                    });
+                    $scope.textoComentario = '';
+                }).
+                error(function(err){
+                    console.log('erro adicionando feed', err)
+                });
+        };
+
+        $scope.buscaFeeds = function(cb){
+            $scope.getFeeds(30, cb);
+        };
+
+        $scope.buscaFeeds(function(feeds){
+            $scope.feeds = feeds;
+        });
+
+
+
+    }]);
+
+    /**
+     *
+     * Home Controller
+     * 
+     */
+    app.controller('homeCtrl', ['$scope', function($scope) {
     }]);
 
     /**
@@ -276,6 +291,16 @@
      * 
      */
     app.controller('iotCtrl', ['$scope', function($scope) {
+    }]);
+
+    /**
+     *
+     * Hackathon Controller
+     * 
+     */
+    app.controller('hackathonCtrl', ['$scope', '$sce', function($scope, $sce) {
+        // usa o $sce.trustAsResourceUrl para validar a url para uso (sem isso não funciona)
+        $scope.video = $sce.trustAsResourceUrl('https://www.youtube.com/embed/hTWKbfoikeg');
     }]);
 
 

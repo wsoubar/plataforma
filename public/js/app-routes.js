@@ -5,7 +5,7 @@
 
         .when('/', {
             templateUrl: 'views/home.html',
-            controller: 'mainCtrl'
+            controller: 'homeCtrl'
         })
 
         .when('/iot', {
@@ -30,16 +30,13 @@
 
         .when('/feed', {
             templateUrl: 'views/feed.html',
-            controller: 'mainCtrl'
+            controller: 'feedCtrl'
         })
-        // nerds page that will use the NerdController
+
         .when('/login', {
             templateUrl: 'views/login.html',
             controller: 'loginCtrl'
-        })
-
-        //.otherwise(res.);
-        ;
+        });
 
     $locationProvider.html5Mode(true);
 
