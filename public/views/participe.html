@@ -1,0 +1,46 @@
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Participe</h2>
+                    <h3 class="section-subheading text-muted">Cadastre-se para paricipar de nosso evento. Não perca!!</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="sentParticipante" id="participanteForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nome" id="namep" required data-validation-required-message="Por favor preencha o seu nome.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email" id="emailp" required data-validation-required-message="Por favor preencha com seu email.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" placeholder="Telefone" id="phonep" required data-validation-required-message="Por favor, preencha com o seu telefone.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Senha" id="senhap" required data-validation-required-message="Por favor preencha a senha.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Confirmar senha" id="confirmarSenhap"  required >
+                                    <!-- data-validation-matches-match="senhap" data-validation-matches-message="As senhas não conferem" -->
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="successp"></div>
+                                <button type="submit" class="btn btn-primary">Confirmar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>

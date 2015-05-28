@@ -8,7 +8,7 @@
         function($scope, $http, $interval, $localStorage) {
 
         $scope.welcome = 'Seja Bem Vindo!';
-        $scope.css = 'united';
+
         $scope.usuario = undefined;
         $scope.token   = undefined;
 
@@ -45,7 +45,7 @@
         };
 
         $scope.getFeeds = function(qtd, cb) {
-            $http.get('/api/feed/limite/'+qtd).
+            $http.get('/feed/limite/'+qtd).
                 success(function(data, status) {
                     if (data.sucesso) {
                         cb(data.feeds);
@@ -71,7 +71,7 @@
             console.log('$scope.usuario', $scope.usuario);
             console.log('$scope.usuario.id', $scope.usuario._id);
 
-            $http.post('/api/feed', feed).
+            $http.post('/feed', feed).
                 success(function(data, status){
                     //console.log('feed adicionado??', data)
                     $scope.buscaFeeds(function(feeds){
@@ -103,34 +103,5 @@
 
     }]);
     
-
-    /**
-     * controller da navbar
-     */
-    app.controller('NavbarCtrl', ['$scope', '$window', function($scope, $window){
-        $scope.isCollapsed = true;
-        $scope.isLogged = false;
-        //alert("screen width " + $window.innerWidth);
-        
-        this.screenWidth = function() {
-            alert("screen width " + $window.innerWidth);
-        };
-    }]);
-
-    app.controller('loginCtrl', function($scope) {
-
-        $scope.tagline = 'To the moon and back!';   
-        $scope.showLogin = true;
-
-        $scope.username = '';
-
-        console.log('showLogin : ' + $scope.showLogin);
-
-        this.doLogin = function() {
-            alert("Teste...");
-        };
-
-    });
-
 
 })();

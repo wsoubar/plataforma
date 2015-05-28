@@ -22,44 +22,41 @@ module.exports = function(app) {
     app.get('/setup',setup.run);
 
 
-
-
-    app.get('/feed/limite/:qtd', feedDao.findLimite);
-    app.post('/usuario', usuarioDao.create);
-    app.post('/desafio', desafioDao.create);
-    app.post('/login', usuarioDao.login);
+    app.get('/api/feed/limite/:qtd', feedDao.findLimite);
+    app.post('/api/usuario', usuarioDao.create);
+    app.post('/api/desafio', desafioDao.create);
+    app.post('/api/login', usuarioDao.login);
 
 
     // middleware 
     // rotas abaixo desse middleware terão token validado
-    app.use(tokenMw.tokenMid);
+    // app.use(tokenMw.tokenMid);
 
 
     // DESAFIO
-    app.put('/desafio/:id', desafioDao.update);
-    app.get('/desafio/:id', desafioDao.findOne);
-    app.get('/desafio', desafioDao.findAll);
-    app.delete('/desafio/:id', desafioDao.delete);
+    app.put('/api/desafio/:id', desafioDao.update);
+    app.get('/api/desafio/:id', desafioDao.findOne);
+    app.get('/api/desafio', desafioDao.findAll);
+    app.delete('/api/desafio/:id', desafioDao.delete);
 
     // usuario / participante
-    app.put('/usuario/:id', usuarioDao.update);
-    app.get('/usuario/:id', usuarioDao.findOne);
-    app.get('/usuario', usuarioDao.findAll);
-    app.delete('/usuario/:id', usuarioDao.delete);
+    app.put('/api/usuario/:id', usuarioDao.update);
+    app.get('/api/usuario/:id', usuarioDao.findOne);
+    app.get('/api/usuario', usuarioDao.findAll);
+    app.delete('/api/usuario/:id', usuarioDao.delete);
 
     // FEED
-    app.post('/feed', feedDao.create);
-    app.put('/feed/:id', feedDao.update);
-    app.get('/feed/:id', feedDao.findOne);
+    app.post('/api/feed', feedDao.create);
+    app.put('/api/feed/:id', feedDao.update);
+    app.get('/api/feed/:id', feedDao.findOne);
 //    app.get('/feed/limite/:qtd', feedDao.findLimite);
-    app.get('/feed', feedDao.findAll);
-    app.delete('/feed/:id', feedDao.delete);
-
+    app.get('/api/feed', feedDao.findAll);
+    app.delete('/api/feed/:id', feedDao.delete);
 
     // frontend routes =========================================================
-    app.get('/', function(req, res) {
-        res.sendFile(path.join(__dirname, '../public', 'index.html'));
+    app.get('*', function(req, res) {
+        res.sendFile(path.join(__dirname, '../public/views', 'index.html'));
+        //res.sendfile('./public/views/index.html');
     });
-
     
 };

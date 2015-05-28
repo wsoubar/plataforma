@@ -1,0 +1,140 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+	padding-top: 50px;
+}
+
+@media only screen and (max-device-width:767px) {
+	/* styles for mobile browsers smaller than 480px; (iPhone) */
+}
+
+@media only screen and (device-width:768px) { /* default iPad screens */
+}
+
+/*
+   HOME
+ */
+#home-view {
+	text-align: center;
+	color: #fff;
+    background-attachment: scroll;
+    background-image: url(../img/header-bg.jpg);
+    /*background: url(../img/header-bg.jpg) no-repeat center center fixed; */
+    background-position: center center;
+    background-repeat: none; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+	-o-background-size: cover;
+}
+
+.intro-text {
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+.intro-text .intro-lead-in {
+    margin-bottom: 25px;
+    font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif; 
+    font-size: 22px;
+    font-style: italic;
+    line-height: 22px;
+}
+
+.intro-text .intro-heading {
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 50px;
+}
+
+@media(min-width:768px) {
+    .intro-text {
+        padding-top: 200px;
+        padding-bottom: 200px;
+    }
+
+    .intro-text .intro-lead-in {
+        margin-bottom: 25px;
+        font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 40px;
+        font-style: italic;
+        line-height: 40px;
+    }
+
+    .intro-text .intro-heading {
+        margin-bottom: 50px;
+        text-transform: uppercase;
+        font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 75px;
+        font-weight: 700;
+        line-height: 75px;
+    }
+}
+
+
+/*
+	IoT
+ */
+
+#iot {
+    background-color: #8BC34A;
+    color: #fff;
+    height: 100%;
+    padding: 50px 40px 80px 40px;
+}
+
+.iot-h4 {
+    text-transform: none;
+    text-align: left;
+    font-size: 30px;
+    padding-top: 90px;
+}   
+
+.iot-p {
+    font-size: 19px;
+    text-align: left;
+    max-width: 570px;
+    line-height: normal;    
+}
+
+.iot-img {
+    padding-left: 10px;
+}
+
+@media(min-width:768px) {
+	.iot-h4 {
+	    text-transform: none;
+	    text-align: left;
+	    font-size: 30px;
+	    padding-top: 90px;
+	}   
+
+	.iot-p {
+	    font-size: 19px;
+	    text-align: left;
+	    max-width: 570px;
+	    line-height: normal;    
+	}
+
+	.iot-img {
+	    padding-left: 63px;
+	}
+}
+
+/*
+	DESAFIO
+ */
+#desafio-page {
+	padding-bottom: 50px;
+}
+
+/*
+	PARTICIPE
+ */
+
+/*
+    LOGIN - Ver login.css
+ */
+
