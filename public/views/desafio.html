@@ -1,4 +1,4 @@
-<div class="container" id="desafio-page">
+<div class="container" id="desafio-div">
     <div class="row">
         <div class="col-lg-12 text-center">
             <h2 class="section-heading">Desafios</h2>
@@ -62,31 +62,36 @@
     </div>
     <div class="row" id="desafio-form">
         <div class="col-lg-12">
-            <form name="sentMessage" id="contactForm" novalidate>
+            <form name="desafioForm" id="desafioForm" ng-submit="postDesafio()" novalidate>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nome" id="name" required data-validation-required-message="Por favor, preencha o seu nome.">
-                            <p class="help-block text-danger"></p>
+                        <div class="form-group" ng-class="{'has-error' : desafioForm.nome.$invalid && desafioForm.nome.$dirty, 'has-success': desafioForm.nome.$valid}">
+                            <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" ng-model="nome"
+                            ng-focus="clean()" required>
+                            <p class="help-block" ng-show="desafioForm.nome.$invalid && desafioForm.nome.$dirty">Nome é obrigatório</p>
                         </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Por favor, preencha com seu email.">
-                            <p class="help-block text-danger"></p>
+                        <div class="form-group" ng-class="{'has-error' : desafioForm.email.$invalid && desafioForm.email.$dirty, 'has-success': desafioForm.email.$valid}">
+                            <input type="email" class="form-control" placeholder="Email" id="email" name="email" ng-model="email" required>
+                            <p class="help-block" ng-show="participanteForm.email.$error.required && participanteForm.email.$dirty">Email é obrigatório</p>
+                            <p class="help-block" ng-show="participanteForm.email.$error.email && participanteForm.email.$dirty">Email é inválido</p>
                         </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="Telefone" id="phone" required data-validation-required-message="Por favor, preencha com o seu telefone.">
-                            <p class="help-block text-danger"></p>
+                        <!-- ^(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})$ -->
+                        <div class="form-group" ng-class="{'has-error' : desafioForm.telefone.$invalid && desafioForm.telefone.$dirty, 'has-success': desafioForm.telefone.$valid}">
+                            <input type="tel" class="form-control" placeholder="Telefone" id="telefone" name="telefone" 
+                            ng-model="telefone" required>
+                            <p class="help-block" ng-show="desafioForm.telefone.$invalid && desafioForm.telefone.$dirty">Telefone é obrigatório</p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Desafio" id="message" required data-validation-required-message="Descreva seu desafio."></textarea>
-                            <p class="help-block text-danger"></p>
+                        <div class="form-group" ng-class="{'has-error' : desafioForm.desafio.$invalid && desafioForm.desafio.$dirty, 'has-success': desafioForm.desafio.$valid}">
+                            <textarea class="form-control" placeholder="Desafio" id="desafio" name="desafio" ng-model="desafio" required></textarea>
+                            <p class="help-block" ng-show="desafioForm.desafio.$invalid && desafioForm.desafio.$dirty">Desafio é obrigatório</p>
                         </div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-lg-12 text-center">
-                        <div id="success"></div>
+                        <div id="success" class="alert alert-success" ng-show="mensagemSucesso">{{mensagemSucesso}}</div>
+                        <div id="error" class="alert alert-danger" ng-show="mensagemErro">{{mensagemErro}}</div>
                         <button type="submit" class="btn btn-primary">Confirmar</button>
                     </div>
                 </div>

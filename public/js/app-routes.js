@@ -10,22 +10,22 @@
 
         .when('/iot', {
             templateUrl: 'views/iot.html',
-            controller: 'mainCtrl'
+            controller: 'iotCtrl'
         })
 
         .when('/hackathon', {
             templateUrl: 'views/hackathon.html',
-            controller: 'mainCtrl'
+            controller: 'hackathonCtrl'
         })
 
         .when('/desafio', {
             templateUrl: 'views/desafio.html',
-            controller: 'mainCtrl'
+            controller: 'desafioCtrl'
         })
 
         .when('/participe', {
             templateUrl: 'views/participe.html',
-            controller: 'mainCtrl'
+            controller: 'participeCtrl'
         })
 
         .when('/feed', {

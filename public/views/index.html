@@ -23,10 +23,6 @@
 
     <!-- HEADER -->
     <nav class="navbar navbar-default navbar-fixed-top navbar-plataforma" role="navigation" ng-controller="NavbarCtrl as navctrl">
-        <!-- <div class="navbar-header">
-            <a class="navbar-brand" href="/">Stencil: Node and Angular</a>
-        </div>
-        -->
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
@@ -47,9 +43,10 @@
              <li><a href="/iot">Internet das Coisas</a></li>
              <li><a href="/hackathon">Hackathon</a></li>
              <li><a href="/desafio">Desafio</a></li>
-             <li><a href="/participe">Participe</a></li>
-             <li><a href="/feed">Feed</a></li>
-             <li><a href="/login">Login</a></li>
+             <li ng-hide="usuario"><a href="/participe">Participe</a></li>
+             <li><a href="/feed">{{(usuario) ? usuario.nome : 'Feed' | split : ' ' : 0}}</a></li>
+             <li ng-hide="usuario"><a href="/login">Login</a></li>
+             <li ng-show="usuario"><a href="#" ng-click="doLogout()">Logout</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
     </nav>
@@ -92,6 +89,7 @@
     <script src="libs/angular-route/angular-route.min.js"></script>
     <script src="libs/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="libs/ngstorage/ngStorage.min.js"></script>
+    <script src="js/app-directives.js"></script>
     <script src="js/app-routes.js"></script>
     <script src="js/app-filters.js"></script>
     <script src="js/app-services.js"></script>

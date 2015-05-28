@@ -8,6 +8,9 @@ var passwordHash = require('password-hash');
 var usuarios = {
     // cria um novo usuario
     create  : function(req, res) {
+
+        //console.log('senha', req);
+
         var user = new Usuario({
             nome: req.body.nome,
             email: req.body.email,

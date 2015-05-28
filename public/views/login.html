@@ -5,7 +5,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-md-12">
-								<a href="#" id="login-form-link" class="active">Login</a>
+								<a href="#" id="loginForm-link" class="active">Login</a>
 							</div>
 						</div>
 						<hr>
@@ -13,15 +13,16 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form name="login-form" id="login-form" role="form" ng-show="showLogin" 
-								ng-submit="loginctrl.doLogin()" novalidate>
-
-									<div class="form-group" ng-class="{'has-error' : login-form.username.$invalid && login-form.username.$dirty, 'has-success': login-form.username.$valid}">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" ng-model="username" required>
-										<p class="help-block" ng-show="login-form.username.$invalid && login-form.username.$dirty">Nome é obrigatório</p>
+								<form name="loginForm" id="loginForm" role="form" ng-submit="doLogin()" novalidate>
+									<!-- <pre>loginForm.username.$invalid {{loginForm.username.$invalid}}<br>loginForm.username.$dirty {{loginForm.username.$dirty}}<br>loginForm.password.$error {{loginForm.password.$error}}
+									</pre> -->
+ 									<div class="form-group" ng-class="{'has-error' : loginForm.username.$invalid && loginForm.username.$dirty, 'has-success': loginForm.username.$valid}">
+										<input type="email" name="username" id="username" tabindex="1" class="form-control" placeholder="Email" value="" ng-model="username" required>
+										<p class="help-block" ng-show="loginForm.username.$invalid && loginForm.username.$dirty">Usuário é obrigatório</p>
 									</div>
-									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" ng-model="password">
+									<div class="form-group" ng-class="{'has-error' : loginForm.password.$invalid && loginForm.password.$dirty, 'has-success': loginForm.password.$valid}">
+										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Senha" ng-model="password" required>
+										<p class="help-block" ng-show="loginForm.password.$invalid && loginForm.password.$dirty">Senha é obrigatória</p>
 									</div>
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember" ng-model="rememberme">
@@ -30,7 +31,7 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
+												<input type="submit" name="loginSubmit" id="loginSubmit" tabindex="4" class="form-control btn btn-success" value="Log In">
 											</div>
 										</div>
 									</div>

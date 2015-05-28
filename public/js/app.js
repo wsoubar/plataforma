@@ -1,7 +1,7 @@
 // public/js/app.js
 (function(){
 
-	var app = angular.module('plataformaApp', ['ngRoute', 'ui.bootstrap', 'plataformaApp-routes', 'plataformaApp-services', 'plataformaApp-filters', 'plataformaApp-controllers']);
+	var app = angular.module('plataformaApp', ['ngRoute', 'ngStorage', 'ui.bootstrap', 'plataformaApp-routes', 'plataformaApp-directives', 'plataformaApp-services', 'plataformaApp-filters', 'plataformaApp-controllers']);
 
 })();
 

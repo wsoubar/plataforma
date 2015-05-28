@@ -4,45 +4,33 @@
 
     var app = angular.module('plataformaApp-controllers', ['ngStorage']);
 
-    app.controller('mainCtrl', ['$scope', '$http', '$interval', '$localStorage', 
-        function($scope, $http, $interval, $localStorage) {
+    app.controller('mainCtrl', ['$rootScope', '$scope', '$http', '$interval', '$localStorage', '$location', 
+        function($rootScope, $scope, $http, $interval, $localStorage, $location) {
 
-        $scope.welcome = 'Seja Bem Vindo!';
-        $scope.css = 'united';
-        $scope.usuario = undefined;
-        $scope.token   = undefined;
-
-        if ($localStorage.usuario) {
-            $scope.usuario = $localStorage.usuario;
-            $scope.token   = $localStorage.token;
-        }
         $scope.feeds = [];
         $scope.feedsDestaque = [];
 
+        $scope.welcome = 'Seja Bem Vindo!';
+        $rootScope.css = 'united';
+        $rootScope.usuario = undefined;
+        $rootScope.token   = undefined;
+
+        if ($localStorage.usuario) {
+            $rootScope.usuario = $localStorage.usuario;
+            $rootScope.token   = $localStorage.token;
+        }
+        if ($localStorage.css) {
+            $rootScope.css = $localStorage.css;
+        }
         
+        /*
         var intervaloFeedsDestaque = $interval(function(){
                 $scope.buscaFeedsDestaque(function(feeds){
                     $scope.feedsDestaque = feeds;
                 })
             }, 300000); // 300000 = 5 minutos
-       
+        */
 
-        $scope.doLogin = function(loginData) {
-            $scope.usuario = loginData.usuario;
-            $localStorage.usuario = loginData.usuario;
-            console.log('usuario', loginData.usuario);
-            $scope.token = loginData.token;
-            $localStorage.token = loginData.token;
-            console.log('token', loginData.token);
-        };
-
-        $scope.doLogout = function() {
-            delete $scope.usuario;
-            delete $localStorage.usuario;
-
-            delete $scope.token;
-            delete $localStorage.token;
-        };
 
         $scope.getFeeds = function(qtd, cb) {
             $http.get('/api/feed/limite/'+qtd).
@@ -85,6 +73,16 @@
         };
 
 
+        $scope.doLogout = function() {
+            console.log('doLogout()');
+            delete $rootScope.usuario;
+            delete $localStorage.usuario;
+
+            delete $scope.token;
+            delete $localStorage.token;
+            $location.path('/');
+        };
+
         $scope.buscaFeeds = function(cb){
             $scope.getFeeds(30, cb);
         };
@@ -117,20 +115,168 @@
         };
     }]);
 
-    app.controller('loginCtrl', function($scope) {
 
-        $scope.tagline = 'To the moon and back!';   
+    /**
+     *
+     * Login Controller
+     * 
+     */
+    app.controller('loginCtrl', [ '$rootScope','$scope','$http', '$localStorage', '$location', 
+        function($rootScope, $scope, $http, $localStorage, $location) {
+
         $scope.showLogin = true;
 
         $scope.username = '';
+        $scope.password = '';
 
-        console.log('showLogin : ' + $scope.showLogin);
+        $scope.doLogin = function() {
 
-        this.doLogin = function() {
-            alert("Teste...");
+            $http.post('/api/login', {email: $scope.username, senha: $scope.password}).
+                success(function(data, status){
+                    /*
+                        usando $rootScope para que o usuario seja atualizado fora no ng-view
+                    */
+                    //$scope.usuario = data.usuario;
+                    $rootScope.usuario = data.usuario;
+                    $localStorage.usuario = data.usuario;
+                    console.log('usuario', data.usuario);
+
+                    //$scope.token = data.token;
+                    $rootScope.token = data.token;
+                    $localStorage.token = data.token;
+                    console.log('token', data.token);
+                    $location.path('/feed');
+                }).
+                error(function(err) {
+                    console.log('Erro ao chamar o Login', err)
+                });
+
+        };
+    }]);
+
+
+    /**
+     *
+     * Desafio Controller
+     * 
+     */
+    app.controller('desafioCtrl', ['$scope', '$http', function($scope, $http) {
+        
+        //$scope.mensagemSucesso = undefined;
+        //$scope.mensagemErro = undefined;
+        $scope.postDesafio = function() {
+            console.log('postDesafio');
+    
+            if (!$scope.nome || !$scope.email || !$scope.telefone || !$scope.desafio) {
+                alert('Preencha todos os campos do formulário.');
+                return;
+            }
+
+            var desafio = {
+                nome: $scope.nome,
+                email: $scope.email,
+                telefone: $scope.telefone,
+                desafio: $scope.desafio
+            };
+
+            $http.post('/api/desafio', desafio).
+                success(function(data, status){
+                    console.log('data', data);
+                    $scope.nome = '';
+                    $scope.email = '';
+                    $scope.telefone = '';
+                    $scope.desafio ='';
+                    $scope.desafioForm.$setPristine(true); 
+                    $scope.mensagemSucesso = 'Desafio enviado com sucesso!';
+
+                }).
+                error(function(err) {
+                    console.log('Err', err)
+                    $scope.mensagemErro = 'Ocorreu um erro inesperado. Teste mais tarde!';                    
+                });
         };
 
-    });
+        $scope.clean = function(){
+            $scope.mensagemSucesso = undefined;
+            $scope.mensagemErro = undefined;
+        };
+
+        $scope.clean();
+        // $scope.mensagemSucesso = "Sucesso!! ";
+
+    }]);
+
+    /**
+     *
+     * Participe Controller
+     * 
+     */
+    app.controller('participeCtrl', ['$scope', '$http', function($scope, $http) {
+
+        $scope.postParticipante = function(){
+
+            console.log('postParticipante');
+
+            if (!$scope.nome || !$scope.email || !$scope.telefone || !$scope.senha) {
+                alert('Preencha todos os campos do formulário.');
+                return;
+            }
+
+            var part = {
+                nome: $scope.nome,
+                email: $scope.email,
+                telefone: $scope.telefone,
+                senha: $scope.senha
+            };
+
+            console.log('participante', part);
+            
+            $http.post('/api/usuario', part).
+                success(function(data, status){
+                    if (data.sucesso) {
+                        console.log('data', data);
+                        $scope.nome = '';
+                        $scope.email = '';
+                        $scope.telefone = '';
+                        $scope.senha ='';
+                        $scope.confirmarSenha ='';
+                        $scope.participanteForm.$setPristine(true); 
+                        $scope.mensagemSucesso = 'Participante cadastrado com sucesso! Faça login agora.';   
+                    } else {
+                        $scope.mensagemErro = data.mensagem;
+                    }
+                }).
+                error(function(err){
+                    console.log('Erro ao tentar incluir participante', err);
+                    $scope.mensagemErro = 'Ocorreu um erro inesperado. Teste mais tarde!';      
+                });
+            
+        };
+
+        $scope.clean = function(){
+            $scope.mensagemSucesso = undefined;
+            $scope.mensagemErro = undefined;
+        };
+
+        $scope.clean();
+
+    }]);
+
+    /**
+     *
+     * Hackathon Controller
+     * 
+     */
+    app.controller('hackathonCtrl', ['$scope', function($scope) {
+    }]);
+
+    /**
+     *
+     * IoT Controller
+     * 
+     */
+    app.controller('iotCtrl', ['$scope', function($scope) {
+    }]);
 
 
 })();

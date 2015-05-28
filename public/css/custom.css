@@ -126,13 +126,29 @@ body {
 /*
 	DESAFIO
  */
-#desafio-page {
+#desafio-div {
 	padding-bottom: 50px;
 }
+
+#desafio-div .form-group input.form-control {
+    height: 45px;
+}
+
+#desafio-div .form-group textarea.form-control {
+    height: 165px;
+}
+
 
 /*
 	PARTICIPE
  */
+#participe-div {
+    padding-bottom: 50px;
+}
+
+#participe-div .form-group input.form-control {
+    height: 45px;
+}
 
 /*
     LOGIN - Ver login.css

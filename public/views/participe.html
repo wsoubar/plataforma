@@ -1,46 +1,57 @@
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Participe</h2>
-                    <h3 class="section-subheading text-muted">Cadastre-se para paricipar de nosso evento. Não perca!!</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <form name="sentParticipante" id="participanteForm" novalidate>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nome" id="namep" required data-validation-required-message="Por favor preencha o seu nome.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email" id="emailp" required data-validation-required-message="Por favor preencha com seu email.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Telefone" id="phonep" required data-validation-required-message="Por favor, preencha com o seu telefone.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Senha" id="senhap" required data-validation-required-message="Por favor preencha a senha.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Confirmar senha" id="confirmarSenhap"  required >
-                                    <!-- data-validation-matches-match="senhap" data-validation-matches-message="As senhas não conferem" -->
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="col-lg-12 text-center">
-                                <div id="successp"></div>
-                                <button type="submit" class="btn btn-primary">Confirmar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="container" id="participe-div">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Participe</h2>
+            <h3 class="section-subheading text-muted">Cadastre-se para paricipar de nosso evento. Não perca!!</h3>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <form name="participanteForm" id="participanteForm" ng-submit="postParticipante()" novalidate>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group" ng-class="{'has-error' : participanteForm.nome.$invalid && participanteForm.nome.$dirty, 'has-success': participanteForm.nome.$valid}">
+                            <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" ng-model="nome"
+                            ng-focus="clean()" required>
+                            <p class="help-block" ng-show="participanteForm.nome.$invalid && participanteForm.nome.$dirty">Nome é obrigatório</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : participanteForm.email.$invalid && participanteForm.email.$dirty, 'has-success': participanteForm.email.$valid}">
+                            <!-- <pre>{{participanteForm.email.$error}}</pre> -->
+                            <input type="email" class="form-control" placeholder="Email" id="email" name="email" ng-model="email" required>
+                            <p class="help-block" ng-show="participanteForm.email.$error.required && participanteForm.email.$dirty">Email é obrigatório</p>
+                            <p class="help-block" ng-show="participanteForm.email.$error.email && participanteForm.email.$dirty">Email é inválido</p>
+                        </div>
+                        <!-- ^(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})$ -->
+                        <div class="form-group" ng-class="{'has-error' : participanteForm.telefone.$invalid && participanteForm.telefone.$dirty, 'has-success': participanteForm.telefone.$valid}">
+                            <input type="tel" class="form-control" placeholder="Telefone" id="telefone" name="telefone" 
+                            ng-model="telefone" required>
+                            <p class="help-block" ng-show="participanteForm.telefone.$invalid && participanteForm.telefone.$dirty">Telefone é obrigatório</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- <pre>erros: {{participanteForm.senha.$error}}</pre> -->
+                        <div class="form-group" ng-class="{'has-error' : participanteForm.senha.$invalid && participanteForm.senha.$dirty, 'has-success': participanteForm.senha.$valid}">
+                            <input type="password" class="form-control" placeholder="Senha" id="senha" name="senha"
+                             ng-model="senha" minlength="3" maxlength="20" required>
+                            <p class="help-block" ng-show="participanteForm.senha.$error.required && participanteForm.senha.$dirty">Senha é obrigatória</p>
+                            <p class="help-block" ng-show="participanteForm.senha.$error.minlength && participanteForm.senha.$dirty">Senha deve ter entre 3 e 20 caracteres</p>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : participanteForm.confirmarSenha.$invalid && participanteForm.confirmarSenha.$dirty, 'has-success': participanteForm.confirmarSenha.$valid}">
+                            <!-- <pre>erros: {{participanteForm.confirmarSenha.$error}}</pre> -->
+                            <input type="password" class="form-control" placeholder="Confirmar senha" id="confirmarSenha" name="confirmarSenha"
+                            compare-to="senha" ng-model="confirmarSenha" minlength="3" maxlength="20" required >
+                            <p class="help-block" ng-show="participanteForm.confirmarSenha.$error.required && participanteForm.confirmarSenha.$dirty">Confirmação da senha é obrigatório</p>
+                            <p class="help-block" ng-show="participanteForm.confirmarSenha.$error.compareTo && participanteForm.confirmarSenha.$dirty">Senhas não conferem</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12 text-center">
+                        <div id="success" class="alert alert-success" ng-show="mensagemSucesso">{{mensagemSucesso}}</div>
+                        <div id="error" class="alert alert-danger" ng-show="mensagemErro">{{mensagemErro}}</div>
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
