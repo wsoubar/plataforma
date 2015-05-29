@@ -8,3 +8,8 @@ https://auth0.com/blog/2014/12/02/using-json-web-tokens-as-api-keys/
 
 trocar css dinamicamente
 https://scotch.io/tutorials/use-angularjs-and-nghref-to-grab-css-dynamically
+
+
+upload 
+http://codeforgeek.com/2014/11/file-uploads-using-node-js/
+https://github.com/flowjs/ng-flow
