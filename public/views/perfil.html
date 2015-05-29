@@ -1,15 +1,8 @@
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Feed</h2>
-                    <h3 class="section-subheading text-muted">Saiba o que estão falando e deixe também o seu comentário.</h3>
-                </div>
-            </div>
-
-            <div class="row">
+            <div class="row" id="perfil-div">
 
                 <!-- ###### Perfil ###### -->
-                <div class=" col-md-3" id="perfil-div" ng-show="usuario">
+                <div class=" col-md-2" id="perfil-div" ng-show="usuario">
                     <div class="card hovercard">
                         <div class="cardheader">
 
@@ -34,12 +27,23 @@
                 <!-- ###### fim perfil ####### -->
 
                 <!-- <div class="col-md-4" ng-hide="true"></div> -->
-                    <div id="feed-div" class="col-md-9" >
+                    <div id="feed-div" class="col-md-10" >
                          <div class="panel panel-primary">
+                            <!--
                             <div class="panel-heading">
                                 <span class="glyphicon glyphicon-comment"></span>&nbsp; Comentários
                             </div>
-
+                            -->
+                            <div class="panel-footer" ng-show="usuario">
+                                <form id="formFeed" name="formFeed" novalidate>
+                                <div class="input-group">
+                                    <input id="btn-input" type="text" ng-model="textoComentario" class="form-control" placeholder="Digite seu comentário aqui..." />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" id="btn-chat" ng-click="enviaComentario()" >enviar</button>
+                                    </span>
+                                </div>
+                                </form>
+                            </div>
                             <div class="panel-body panel-body-feed">
                                 <ul class="chat">
                                     <li class="clearfix" ng-repeat="feed in feeds">
@@ -53,16 +57,9 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="panel-footer" ng-show="usuario">
-                                <form id="formFeed" name="formFeed" novalidate>
-                                <div class="input-group">
-                                    <input id="btn-input" type="text" ng-model="textoComentario" class="form-control" placeholder="Digite seu comentário aqui..." />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" id="btn-chat" ng-click="enviaComentario()" >enviar</button>
-                                    </span>
-                                </div>
-                                </form>
-                            </div>
+
+
+                            
                         </div>
                     </div>
                 </div>

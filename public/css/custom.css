@@ -150,6 +150,10 @@ body {
     height: 45px;
 }
 
+
+#perfil-div {
+    padding-top: 15px;
+}
 /*
     LOGIN - Ver login.css
  */

@@ -7,19 +7,30 @@
     app.controller('mainCtrl', ['$rootScope', '$scope', '$interval', '$localStorage', '$location', 'feedService',
         function($rootScope, $scope, $interval, $localStorage, $location, feedService) {
 
+        if ($localStorage.css) {
+            $rootScope.css = $localStorage.css;
+        } else {
+            $rootScope.css = 'united';
+        }
+
         $scope.feedsDestaque = [];
 
         $scope.welcome = 'Seja Bem Vindo!';
-        $rootScope.css = 'united';
         $rootScope.usuario = undefined;
         $rootScope.token   = undefined;
+
+        $scope.acss = ['flatly', 'united', 'darkly', 'journal'];
+        $scope.cssIdx = 0;
+
+        $scope.trocaCss = function() {
+            
+            $rootScope.css = $scope.acss[$scope.cssIdx++];
+            if ($scope.cssIdx > 3) $scope.cssIdx = 0;
+        };
 
         if ($localStorage.usuario) {
             $rootScope.usuario = $localStorage.usuario;
             $rootScope.token   = $localStorage.token;
-        }
-        if ($localStorage.css) {
-            $rootScope.css = $localStorage.css;
         }
         
         /*

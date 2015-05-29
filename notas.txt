@@ -9,7 +9,9 @@ https://auth0.com/blog/2014/12/02/using-json-web-tokens-as-api-keys/
 trocar css dinamicamente
 https://scotch.io/tutorials/use-angularjs-and-nghref-to-grab-css-dynamically
 
+http://weblogs.asp.net/dwahlin/using-an-angularjs-factory-to-interact-with-a-restful-service
 
 upload 
 http://codeforgeek.com/2014/11/file-uploads-using-node-js/
 https://github.com/flowjs/ng-flow
+http://stackoverflow.com/questions/25019134/how-to-upload-an-image-file-to-mongoose-database-using-mean-js
