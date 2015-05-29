@@ -10,7 +10,7 @@
         $scope.feedsDestaque = [];
 
         $scope.welcome = 'Seja Bem Vindo!';
-        $rootScope.css = 'darkly';
+        $rootScope.css = 'united';
         $rootScope.usuario = undefined;
         $rootScope.token   = undefined;
 
