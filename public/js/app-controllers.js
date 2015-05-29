@@ -4,8 +4,8 @@
 
     var app = angular.module('plataformaApp-controllers', ['ngStorage']);
 
-    app.controller('mainCtrl', ['$rootScope', '$scope', '$http', '$interval', '$localStorage', '$location', 
-        function($rootScope, $scope, $http, $interval, $localStorage, $location) {
+    app.controller('mainCtrl', ['$rootScope', '$scope', '$interval', '$localStorage', '$location', 'feedService',
+        function($rootScope, $scope, $interval, $localStorage, $location, feedService) {
 
         $scope.feedsDestaque = [];
 
@@ -32,7 +32,7 @@
 
 
         $scope.getFeeds = function(qtd, cb) {
-            $http.get('/api/feed/limite/'+qtd).
+            feedService.consultarFeedsLimite(qtd).
                 success(function(data, status) {
                     if (data.sucesso) {
                         cb(data.feeds);
@@ -85,8 +85,8 @@
      * Login Controller
      * 
      */
-    app.controller('loginCtrl', [ '$rootScope','$scope','$http', '$localStorage', '$location', 
-        function($rootScope, $scope, $http, $localStorage, $location) {
+    app.controller('loginCtrl', [ '$rootScope','$scope','$localStorage', '$location', 'usuarioService', 
+        function($rootScope, $scope, $localStorage, $location, usuarioService) {
 
         $scope.showLogin = true;
 
@@ -95,7 +95,7 @@
 
         $scope.doLogin = function() {
 
-            $http.post('/api/login', {email: $scope.username, senha: $scope.password}).
+            usuarioService.loginUsuario({email: $scope.username, senha: $scope.password}).
                 success(function(data, status){
                     /*
                         usando $rootScope para que o usuario seja atualizado fora no ng-view
@@ -109,7 +109,7 @@
                     $rootScope.token = data.token;
                     $localStorage.token = data.token;
                     console.log('token', data.token);
-                    $location.path('/feed');
+                    $location.path('/perfil');
                 }).
                 error(function(err) {
                     console.log('Erro ao chamar o Login', err)
@@ -124,7 +124,7 @@
      * Desafio Controller
      * 
      */
-    app.controller('desafioCtrl', ['$scope', '$http', function($scope, $http) {
+    app.controller('desafioCtrl', ['$scope', 'desafioService', function($scope, desafioService) {
         
         //$scope.mensagemSucesso = undefined;
         //$scope.mensagemErro = undefined;
@@ -143,7 +143,7 @@
                 desafio: $scope.desafio
             };
 
-            $http.post('/api/desafio', desafio).
+            desafioService.incluirDesafio(desafio).
                 success(function(data, status){
                     console.log('data', data);
                     $scope.nome = '';
@@ -175,7 +175,7 @@
      * Participe Controller
      * 
      */
-    app.controller('participeCtrl', ['$scope', '$http', function($scope, $http) {
+    app.controller('participeCtrl', ['$scope', 'usuarioService', function($scope, usuarioService) {
 
         $scope.postParticipante = function(){
 
@@ -195,7 +195,7 @@
 
             console.log('participante', part);
             
-            $http.post('/api/usuario', part).
+            usuarioService.incluirUsuario(part).
                 success(function(data, status){
                     if (data.sucesso) {
                         console.log('data', data);
@@ -231,7 +231,7 @@
      * Feed Controller
      * 
      */
-    app.controller('feedCtrl', ['$scope', '$http', function($scope, $http) {
+    app.controller('feedCtrl', ['$scope', 'feedService', function($scope, feedService) {
         $scope.feeds = [];
 
         $scope.enviaComentario = function() {
@@ -246,36 +246,94 @@
                 token: $scope.token
             };
 
-            /*
-            console.log('$scope.textoComentario', $scope.textoComentario);
-            console.log('$scope.usuario', $scope.usuario);
-            console.log('$scope.usuario.id', $scope.usuario._id);
-            */
-
-            $http.post('/api/feed', feed).
-                success(function(data, status){
-                    //console.log('feed adicionado??', data)
-                    $scope.buscaFeeds(function(feeds){
-                        $scope.feeds = feeds;
-                    });
-                    $scope.textoComentario = '';
-                }).
-                error(function(err){
+            feedService.incluirFeed(feed)
+                .success(function(data, status) {
+                    // busca novos feedbacks após a inclusão:
+                    feedService.consultarFeedsLimite(30).
+                        success(function(data, status){
+                            if (data.sucesso) {
+                                $scope.feeds = data.feeds;
+                            }
+                            $scope.textoComentario = '';
+                        }).
+                        error(function(err){
+                            console.log('erro adicionando feed', err)
+                        });
+                })
+                .error(function(err){
                     console.log('erro adicionando feed', err)
                 });
+
         };
 
-        $scope.buscaFeeds = function(cb){
-            $scope.getFeeds(30, cb);
-        };
-
-        $scope.buscaFeeds(function(feeds){
-            $scope.feeds = feeds;
-        });
-
-
+        // carrega feeds ao entrar na página
+        feedService.consultarFeedsLimite(30).
+            success(function(data, status){
+                if (data.sucesso) {
+                    $scope.feeds = data.feeds;
+                }
+                $scope.textoComentario = '';
+            }).
+            error(function(err){
+                console.log('erro adicionando feed', err)
+            });
 
     }]);
+
+    /**
+     *
+     * Feed Controller
+     * 
+     */
+    app.controller('perfilCtrl', ['$scope', '$rootScope', 'feedService', function($scope, $rootScope, feedService) {
+        $scope.feeds = [];
+
+        $scope.enviaComentario = function() {
+
+            if (!$scope.textoComentario) {
+                return;
+            }
+
+            var feed = { 
+                texto: $scope.textoComentario,
+                usuarioId: $scope.usuario._id, 
+                token: $scope.token
+            };
+
+            feedService.incluirFeed(feed)
+                .success(function(data, status) {
+                    // busca novos feedbacks após a inclusão:
+                    feedService.consultarFeedsLimite(30).
+                        success(function(data, status){
+                            if (data.sucesso) {
+                                $scope.feeds = data.feeds;
+                            }
+                            $scope.textoComentario = '';
+                        }).
+                        error(function(err){
+                            console.log('erro adicionando feed', err)
+                        });
+                })
+                .error(function(err){
+                    console.log('erro adicionando feed', err)
+                });
+
+        };
+
+        // carrega feeds ao entrar na página
+        feedService.consultarFeedsLimite(30).
+            success(function(data, status){
+                if (data.sucesso) {
+                    $scope.feeds = data.feeds;
+                }
+                $scope.textoComentario = '';
+            }).
+            error(function(err){
+                console.log('erro adicionando feed', err)
+            });
+
+    }]);
+
 
     /**
      *

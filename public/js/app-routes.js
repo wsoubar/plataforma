@@ -33,6 +33,11 @@
             controller: 'feedCtrl'
         })
 
+        .when('/perfil', {
+            templateUrl: 'views/perfil.html',
+            controller: 'perfilCtrl'
+        })
+
         .when('/dashboard', {
             templateUrl: 'views/dashboard.html',
             controller: 'dashboardCtrl'

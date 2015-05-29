@@ -45,7 +45,8 @@
              <li><a href="/hackathon">Hackathon</a></li>
              <li><a href="/desafio">Desafio</a></li>
              <li ng-hide="usuario"><a href="/participe">Participe</a></li>
-             <li><a href="/feed">{{(usuario) ? usuario.nome : 'Feed' | split : ' ' : 0}}</a></li>
+             <li ng-hide="usuario"><a href="/feed">Feed</a></li>
+             <li ng-show="usuario"><a href="/perfil">{{usuario.nome  | split : ' ' : 0}}</a></li>
              <li ng-hide="usuario"><a href="/login">Login</a></li>
              <li ng-show="usuario"><a href="#" ng-click="doLogout()">Logout</a></li>
           </ul>

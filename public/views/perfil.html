@@ -8,7 +8,33 @@
 
             <div class="row">
 
-                    <div id="feed-div" class="col-md-12" >
+                <!-- ###### Perfil ###### -->
+                <div class=" col-md-3" id="perfil-div" ng-show="usuario">
+                    <div class="card hovercard">
+                        <div class="cardheader">
+
+                        </div>
+                        <div class="avatar">
+                            <img alt="" src="img/perfil/user-profile.png">
+                        </div>
+                        <div class="info">
+                            <div class="title" id="perfil-nome">
+                                {{usuario.nome}}
+                            </div>
+                            <div class="desc" id="perfil-email">{{usuario.email}}</div>
+                        </div>
+                        <!--
+                        <div>
+                            <button type="button" class="btn btn-primary btn-sm">editar</button>
+                        </div>
+                        -->
+                    </div>
+
+                </div>
+                <!-- ###### fim perfil ####### -->
+
+                <!-- <div class="col-md-4" ng-hide="true"></div> -->
+                    <div id="feed-div" class="col-md-9" >
                          <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <span class="glyphicon glyphicon-comment"></span>&nbsp; Comentários

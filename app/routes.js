@@ -25,7 +25,7 @@ module.exports = function(app) {
     app.get('/api/feed/limite/:qtd', feedDao.findLimite);
     app.post('/api/usuario', usuarioDao.create);
     app.post('/api/desafio', desafioDao.create);
-    app.post('/api/login', usuarioDao.login);
+    app.post('/api/usuario/login', usuarioDao.login);
 
 
     // middleware 
