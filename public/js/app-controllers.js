@@ -10,7 +10,7 @@
         $scope.feedsDestaque = [];
 
         $scope.welcome = 'Seja Bem Vindo!';
-        $rootScope.css = 'united';
+        $rootScope.css = 'darkly';
         $rootScope.usuario = undefined;
         $rootScope.token   = undefined;
 
@@ -291,6 +291,25 @@
      * 
      */
     app.controller('iotCtrl', ['$scope', function($scope) {
+    }]);
+
+    /**
+     *
+     * Dashboard Controller
+     * 
+     */
+    app.controller('dashboardCtrl', ['$scope', function($scope) {
+        $scope.pages = {
+            p1: 'views/inc-dash/inc-desafios.html',
+            p2: 'views/inc-dash/inc-participantes.html',
+            p3: 'views/inc-dash/inc-feeds.html',
+            p4: 'views/inc-dash/inc-config.html'
+        };
+
+        $scope.subpage = 'p1';
+        $scope.qtdDesafios = 15;
+
+
     }]);
 
     /**
