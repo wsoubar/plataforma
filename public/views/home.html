@@ -5,21 +5,12 @@
             <div class="intro-text">
               <div class="intro-lead-in">Seja Bem Vindo!</div>
               <div class="intro-heading">Internet das Coisas</div>
-              <!-- <a href="#services" class="page-scroll btn btn-xl">Saiba mais</a> -->
-
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
-              <p>teste</p> 
+              <div class="col-md-offset-3 col-md-6 col-md-offset-3 text-left">
+                  <blockquote ng-repeat="feed in feedsDestaque | limitTo: 1">
+                    <p>{{feed.texto}}</p>
+                    <footer>{{feed.usuario.nome}}</cite></footer>
+                  </blockquote>
+              </div>
             </div>
         </div>
     </div>

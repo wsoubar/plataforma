@@ -99,28 +99,33 @@
     app.controller('loginCtrl', [ '$rootScope','$scope','$localStorage', '$location', 'usuarioService', 
         function($rootScope, $scope, $localStorage, $location, usuarioService) {
 
-        $scope.showLogin = true;
-
         $scope.username = '';
         $scope.password = '';
 
         $scope.doLogin = function() {
 
+
             usuarioService.loginUsuario({email: $scope.username, senha: $scope.password}).
                 success(function(data, status){
-                    /*
-                        usando $rootScope para que o usuario seja atualizado fora no ng-view
-                    */
-                    //$scope.usuario = data.usuario;
-                    $rootScope.usuario = data.usuario;
-                    $localStorage.usuario = data.usuario;
-                    console.log('usuario', data.usuario);
 
-                    //$scope.token = data.token;
-                    $rootScope.token = data.token;
-                    $localStorage.token = data.token;
-                    console.log('token', data.token);
-                    $location.path('/perfil');
+                    if (data.sucesso) {
+                        /*
+                            usando $rootScope para que o usuario seja atualizado fora no ng-view
+                        */
+                        //$scope.usuario = data.usuario;
+                        $rootScope.usuario = data.usuario;
+                        $localStorage.usuario = data.usuario;
+                        console.log('usuario', data.usuario);
+
+                        //$scope.token = data.token;
+                        $rootScope.token = data.token;
+                        $localStorage.token = data.token;
+                        console.log('token', data.token);
+                        $location.path('/perfil');
+                    } else {
+                        console.log('Erro: '+ data.mensagem);
+                        $scope.mensagemLogin = data.mensagem;
+                    }
                 }).
                 error(function(err) {
                     console.log('Erro ao chamar o Login', err)
@@ -351,7 +356,12 @@
      * Home Controller
      * 
      */
-    app.controller('homeCtrl', ['$scope', function($scope) {
+    app.controller('homeCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+                $rootScope.citacaoHome = true;
+        //$interval(function(){
+        //    $scope.citacaoHome = !$scope.citacaoHome;
+        //},10000);
+
     }]);
 
     /**

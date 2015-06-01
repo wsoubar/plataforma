@@ -51,12 +51,12 @@ var usuarios = {
     },
 
     login : function(req, res) {
+
         var email = req.body.email;
         var senha = req.body.senha;
 
         Usuario.findOne({email: email }, function(err, user) {
             //if (err) throw err;
-
             if (user) {
                 if (passwordHash.verify(senha, user.senha)) {
                     // user.token = jwt.sign(user, jwtSecret);
@@ -67,8 +67,8 @@ var usuarios = {
                 } else {
                     res.json({ sucesso: false, mensagem: 'Usuário ou senha inválidos'});    
                 }
-            } else if (err) {
-                res.json({ sucesso: false, mensagem: 'Erro indefinido!', erro: err });
+            } else {
+                res.json({ sucesso: false, mensagem: 'Usuário ou senha inválidos', erro: err });
             }
         });
     },

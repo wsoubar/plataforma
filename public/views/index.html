@@ -49,6 +49,7 @@
              <li ng-hide="usuario"><a href="/feed">Feed</a></li>
              <li ng-show="usuario"><a href="/perfil">{{usuario.nome  | split : ' ' : 0}}</a></li>
              <li ng-hide="usuario"><a href="/login">Login</a></li>
+             <li ng-show="usuario.role=='admin'"><a href="/dashboard">Dashboard</a></li>
              <li ng-show="usuario"><a href="#" ng-click="doLogout()">Logout</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -90,6 +91,7 @@
     <!-- AngularJS -->
     <script src="libs/angular/angular.min.js"></script>
     <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="libs/angular-animate/angular-animate.js"></script>
     <script src="libs/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="libs/ngstorage/ngStorage.min.js"></script>
     <script src="js/app-directives.js"></script>

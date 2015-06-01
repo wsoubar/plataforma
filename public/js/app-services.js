@@ -12,7 +12,7 @@
         var urlBase = '/api/usuario';
 
         var usuarioFactory = {};
-
+        
         usuarioFactory.consultarUsuarios = function() {
             return $http.get(urlBase);
         }        

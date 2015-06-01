@@ -27,6 +27,11 @@ body {
 	-o-background-size: cover;
 }
 
+#home-blockquote {
+  padding-top: 70px;
+  padding-bottom: 70px;    
+}
+
 .intro-text {
     padding-top: 100px;
     padding-bottom: 50px;
@@ -166,3 +171,4 @@ body {
     min-height: 50px;
 }
 */
+

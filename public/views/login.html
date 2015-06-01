@@ -16,6 +16,7 @@
 								<form name="loginForm" id="loginForm" role="form" ng-submit="doLogin()" novalidate>
 									<!-- <pre>loginForm.username.$invalid {{loginForm.username.$invalid}}<br>loginForm.username.$dirty {{loginForm.username.$dirty}}<br>loginForm.password.$error {{loginForm.password.$error}}
 									</pre> -->
+									<p class="alert alert-danger" ng-show="mensagemLogin">{{ mensagemLogin }}</p>
  									<div class="form-group" ng-class="{'has-error' : loginForm.username.$invalid && loginForm.username.$dirty, 'has-success': loginForm.username.$valid}">
 										<input type="email" name="username" id="username" tabindex="1" class="form-control" placeholder="Email" value="" ng-model="username" required>
 										<p class="help-block" ng-show="loginForm.username.$invalid && loginForm.username.$dirty">Usuário é obrigatório</p>
@@ -39,7 +40,7 @@
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+													<a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
 												</div>
 											</div>
 										</div>
