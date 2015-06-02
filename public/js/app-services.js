@@ -114,4 +114,55 @@
 
     }]);
 
+/*
+    app.factory('httpInterceptor', function httpInterceptor ($q, $window, $location) {
+      return function (promise) {
+          var success = function (response) {
+              return response;
+          };
+
+          var error = function (response) {
+              if (response.status === 401) {
+                  $location.url('/login');
+              }
+
+              return $q.reject(response);
+          };
+
+          return promise.then(success, error);
+      };
+    });    
+*/
+    app.factory('authInterceptor', ['$rootScope', '$q', '$location', '$localStorage', function ($rootScope, $q, $location, $localStorage) {
+      return {
+        request: function (config) {
+            //console.log('--------- authInterceptor --------');
+            //console.log('--------- localstorage token --------', $localStorage.token);
+
+          config.headers = config.headers || {};
+          if ($localStorage.token) {
+            config.headers["Authorization"]=$localStorage.token;
+            //config.headers.Authorization = $localStorage.token;
+          }
+          return config;
+        },
+        response: function (response) {
+          if (response.status === "401") {
+            $location.path('/login');
+          }
+          return response || $q.when(response);
+        }
+      };
+    }]);
+
+/*
+    app.factory('api', ['$http', '$localStorage', function ($http, $localStorage) {
+      return {
+          init: function (token) {
+              $http.defaults.headers.common['X-Access-Token'] = token || $localStorage.token;
+          }
+      };
+    }]);
+*/
+
 })();

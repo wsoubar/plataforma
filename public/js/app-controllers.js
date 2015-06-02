@@ -115,12 +115,13 @@
                         //$scope.usuario = data.usuario;
                         $rootScope.usuario = data.usuario;
                         $localStorage.usuario = data.usuario;
-                        console.log('usuario', data.usuario);
+                        //console.log('usuario', data.usuario);
 
                         //$scope.token = data.token;
                         $rootScope.token = data.token;
                         $localStorage.token = data.token;
-                        console.log('token', data.token);
+                        //api.init(token);
+                        //console.log('token', data.token);
                         $location.path('/perfil');
                     } else {
                         console.log('Erro: '+ data.mensagem);
@@ -128,7 +129,8 @@
                     }
                 }).
                 error(function(err) {
-                    console.log('Erro ao chamar o Login', err)
+                    console.log('Erro ao chamar o Login', err);
+                    $scope.mensagemLogin = err;
                 });
 
         };
@@ -303,6 +305,7 @@
      */
     app.controller('perfilCtrl', ['$scope', '$rootScope', 'feedService', function($scope, $rootScope, feedService) {
         $scope.feeds = [];
+        $scope.isEditingUser = false;
 
         $scope.enviaComentario = function() {
 
@@ -377,7 +380,7 @@
      * Dashboard Controller
      * 
      */
-    app.controller('dashboardCtrl', ['$scope', function($scope) {
+    app.controller('dashboardCtrl', ['$scope', 'desafioService', 'usuarioService', function($scope, desafioService, usuarioService) {
         $scope.pages = {
             p1: 'views/inc-dash/inc-desafios.html',
             p2: 'views/inc-dash/inc-participantes.html',
@@ -386,8 +389,44 @@
         };
 
         $scope.subpage = 'p1';
-        $scope.qtdDesafios = 15;
+        $scope.desafios = [];
 
+        $scope.listarDesafios = function(){
+            // busca desafios
+            desafioService.consultarDesafios().
+                success(function(data){
+                    if (data.sucesso) {
+                        $scope.desafios = data.desafios;
+                        $scope.qtdDesafios = $scope.desafios.length;
+                    } else {
+                        console.log('erro: ', data.mensagem, data);
+                    }
+                }).
+                error(function(err){
+                    console.log('err', err);
+                });
+
+        };
+
+        $scope.listaParticipantes = function() {
+            // busca desafios
+            usuarioService.consultarUsuarios().
+                success(function(data){
+                    if (data.sucesso) {
+                        $scope.participantes = data.usuarios;
+                        $scope.qtdParticipantes = $scope.participantes.length;
+                    } else {
+                        console.log('erro: ', data.mensagem, data);
+                    }
+                }).
+                error(function(err){
+                    console.log('err', err);
+                });
+        };
+
+
+        $scope.listarDesafios();
+        $scope.listaParticipantes();
 
     }]);
 

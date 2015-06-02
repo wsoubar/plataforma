@@ -6,7 +6,7 @@ var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var morgan         = require('morgan');
-var mongoose = require('mongoose');
+var mongoose       = require('mongoose');
 // configuration ===========================================
     
 // config files

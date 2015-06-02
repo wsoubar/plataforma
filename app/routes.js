@@ -1,4 +1,5 @@
 // app/routes.js
+var multer  = require('multer');
 var pjson = require('../package.json');
 var path = require('path');
 
@@ -11,17 +12,48 @@ var setup = require('./setup');
 module.exports = function(app) {
 
     // server routes ===========================================================
-
-
     app.get('/teste', function(req, res){
         res.json({ mensagem: 'servidor rodando!!', version: pjson.version });
     });
 
     // prepara aplicação para primeira execução
-
     app.get('/setup',setup.run);
 
 
+    /*
+     *  ########## consiguração do multer para upload de imagens ##########
+     */
+    var done = false;
+    app.use(multer({ dest: './public/uploads/',
+        rename: function (fieldname, filename) {
+            return filename+Date.now();
+        },
+        
+        onFileUploadStart: function (file) {
+          console.log(file.originalname + ' is starting ...')
+        },
+        
+        onFileUploadComplete: function (file) {
+          console.log(file.fieldname + ' uploaded to  ' + file.path)
+          done=true;
+        }
+    }));
+
+    /*
+     * ############## APIs ########################
+     */
+    app.post('/api/photo',function(req,res){
+      if(done==true){
+        console.log(req.files);
+        res.end("File uploaded.");
+      }
+    });
+
+    /*
+    
+      ############## APIs ########################
+
+     */
     app.get('/api/feed/limite/:qtd', feedDao.findLimite);
     app.post('/api/usuario', usuarioDao.create);
     app.post('/api/desafio', desafioDao.create);
@@ -58,5 +90,4 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, '../public/views', 'index.html'));
         //res.sendfile('./public/views/index.html');
     });
-    
 };

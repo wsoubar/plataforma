@@ -2,10 +2,11 @@ var mongoose = require('mongoose');
 var Schema          = mongoose.Schema;
 
 var desafioSchema   = new Schema({
-	nome: String,
-	email: String,
-	telefone: String,
-	desafio: String,
+	nome: {type: String, required: true},
+	email: {type: String, required: true},
+	telefone: {type: String, required: true},
+	desafio: {type: String, required: true},
+    status: {type: String, default: 'enviado', required: true, lowercase: true},
 	data: {type: Date, default: Date.now}
 }, { collection: 'desafio' });
 

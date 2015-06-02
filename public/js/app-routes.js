@@ -1,5 +1,8 @@
 // public/js/appRoutes.js
-    angular.module('plataformaApp-routes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    angular.module('plataformaApp-routes', ['plataformaApp-services'])
+    .config(['$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
+
+    //$httpProvider.interceptors.push('authInterceptor');
 
     $routeProvider
 

@@ -3,55 +3,25 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>#</th>
         <th>Nome</th>
         <th>Email</th>
         <th>Telefone</th>
         <th>Desafio</th>
+        <th>Data</th>
+        <th>Status</th>
+        <th>#</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1,001</td>
-        <td>Lorem</td>
-        <td>ipsum</td>
-        <td>dolor</td>
-        <td>sit</td>
-      </tr>
-      <tr>
-        <td>1,002</td>
-        <td>amet</td>
-        <td>consectetur</td>
-        <td>adipiscing</td>
-        <td>elit</td>
-      </tr>
-      <tr>
-        <td>1,003</td>
-        <td>Integer</td>
-        <td>nec</td>
-        <td>odio</td>
-        <td>Praesent</td>
-      </tr>
-      <tr>
-        <td>1,013</td>
-        <td>torquent</td>
-        <td>per</td>
-        <td>conubia</td>
-        <td>nostra</td>
-      </tr>
-      <tr>
-        <td>1,014</td>
-        <td>per</td>
-        <td>inceptos</td>
-        <td>himenaeos</td>
-        <td>Curabitur</td>
-      </tr>
-      <tr>
-        <td>1,015</td>
-        <td>sodales</td>
-        <td>ligula</td>
-        <td>in</td>
-        <td>libero</td>
+      <tr ng-repeat="desafio in desafios | orderBy:'data'">
+        <td>{{desafio.nome}}</td>
+        <td>{{desafio.email}}</td>
+        <td>{{desafio.telefone}}</td>
+        <td>{{desafio.desafio | limitTo: 30}}...</td>
+        <td>{{ desafio.data | date: 'dd/MM/yyyy HH:mm'}}</td>
+        <td>{{desafio.status | uppercase}}</td>
+        <td><a href="" title="Atender"><span class="glyphicon glyphicon-pencil"></span></a>
+        <span class="glyphicon glyphicon-ok" ng-show="desafio.status =='processado'"></span></td>
       </tr>
     </tbody>
   </table>
