@@ -76,6 +76,7 @@ body {
         font-weight: 700;
         line-height: 75px;
     }
+
 }
 
 
@@ -172,3 +173,15 @@ body {
 }
 */
 
+/** 
+ PERFIL
+**/
+#perfil-nome{
+    font-size: 18px;
+}
+
+@media(min-width:768px) {
+    .card.hovercard {
+        margin-left: 20px;
+    }
+}

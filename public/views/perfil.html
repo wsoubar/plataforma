@@ -2,19 +2,21 @@
             <div class="row" id="perfil-div">
 
                 <!-- ###### Perfil ###### -->
-                <div class=" col-md-2" id="perfil-div" ng-show="usuario">
+                <div class=" col-md-3" id="perfil-div" ng-show="usuario">
                     <div class="card hovercard">
                         <div class="cardheader">
 
                         </div>
                         <div class="avatar">
-                            <img alt="" src="img/perfil/user-profile.png">
+                            <img alt="" ng-src="{{(usuario.foto) ? usuario.foto : 'img/perfil/user-profile.png'}}">
                         </div>
                         <div class="info" id="userInfo" ng-hide="isEditingUser">
                             <div class="title" id="perfil-nome">
                                 {{usuario.nome}}
                             </div>
-                            <div class="desc" id="perfil-email">{{usuario.email}}</div>
+                            <div class="email text-muted" id="perfil-email">{{usuario.email}}</div>
+                            <div class="bio" id="perfil-bio">{{usuario.bio}}</div>
+                           
                             <input type="button" value="editar" class="btn btn-primary btn-sm" ng-click="isEditingUser = !isEditingUser" >
                         </div>
                         <!--
@@ -23,23 +25,33 @@
                         </div>
                         -->
                         <div id="userInfoEdit" ng-show="isEditingUser">
-                            <form id       =  "uploadForm"
+                            <!-- <form id       =  "uploadForm"
                                  enctype   =  "multipart/form-data"
                                  action    =  "/api/photo"
-                                 method    =  "post"
-                            >
+                                 method    =  "post" novalidate
+                            > -->
+                            <form ng-submit="uploadFile()">
+                            <input type="file" name="userPhoto" ngf-select ng-model="foto" />
+                          <div class="progress" style="margin-top: 20px;">
+                            <div class="progress-bar" progress-bar="uploadProgress" role="progressbar">
+                              <span ng-bind="uploadProgress"></span>
+                              <span>%</span>
+                            </div>
+                          </div>
+
+                            <input type="submit" value="Upload Image" name="submit" class="btn btn-primary btn-sm">
                             <div class="form-group">
                                 <label for="nome">Nome</label>
                                 <input type="text" class="form-control input-sm" placeholder="Nome" id="nome" name="nome" ng-model="usuario.nome" required>
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control input-sm" id="email" name="email" ng-model="usuario.email" readonly >
+                                <label for="nome">Sobre você</label>
+                                <textarea class="form-control input-sm" placeholder="Sobre você..." id="bio" name="bio" ng-model="usuario.bio" maxlength="255" required></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="nome">Telefone</label>
-                                <input type="text" class="form-control input-sm" placeholder="Telefone" id="telefone" name="telefone" ng-model="usuario.telefone" required>
+                                <input type="button" value="Salvar" class="form-control btn btn-primary btn-sm" />                                
+                                <input type="button" value="Cancelar" class="form-control btn btn-default btn-sm" />                                
                             </div>
-                            <input type="file" name="userPhoto" />
-                            <input type="submit" value="Upload Image" name="submit" class="btn btn-primary btn-sm">
                             </form>
                         </div>
                     </div>
@@ -48,7 +60,7 @@
                 <!-- ###### fim perfil ####### -->
 
                 <!-- <div class="col-md-4" ng-hide="true"></div> -->
-                    <div id="feed-div" class="col-md-10" >
+                    <div id="feed-div" class="col-md-9" >
                          <div class="panel panel-primary">
                             <!--
                             <div class="panel-heading">

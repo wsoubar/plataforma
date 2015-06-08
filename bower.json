@@ -1,14 +1,16 @@
 {
-    "name": "Plataforma",
-    "version": "1.0.0",
-    "dependencies": {
-        "bootstrap": "latest",
-        "font-awesome": "latest",
-        "animate.css": "latest",
-        "angular": "latest",
-        "angular-route": "latest",  
-        "angular-bootstrap": "latest",
-        "angular-animate": "latest",
-        "ngstorage": "latest"
-    }
+  "name": "Plataforma",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "latest",
+    "font-awesome": "latest",
+    "animate.css": "latest",
+    "angular": "latest",
+    "angular-route": "latest",
+    "angular-bootstrap": "latest",
+    "angular-animate": "latest",
+    "ngstorage": "latest",
+    "ng-file-upload": "latest",
+    "ng-file-upload-shim": "~5.0.1"
+  }
 }

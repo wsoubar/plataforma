@@ -19,7 +19,7 @@
         $rootScope.usuario = undefined;
         $rootScope.token   = undefined;
 
-        $scope.acss = ['flatly', 'united', 'darkly', 'journal'];
+        $scope.acss = ['flatly', 'united', 'darkly', 'journal', 'default'];
         $scope.cssIdx = 0;
 
         $scope.trocaCss = function() {
@@ -43,6 +43,7 @@
 
 
         $scope.getFeeds = function(qtd, cb) {
+            
             feedService.consultarFeedsLimite(qtd).
                 success(function(data, status) {
                     if (data.sucesso) {
@@ -103,7 +104,6 @@
         $scope.password = '';
 
         $scope.doLogin = function() {
-
 
             usuarioService.loginUsuario({email: $scope.username, senha: $scope.password}).
                 success(function(data, status){
@@ -303,7 +303,7 @@
      * Feed Controller
      * 
      */
-    app.controller('perfilCtrl', ['$scope', '$rootScope', 'feedService', function($scope, $rootScope, feedService) {
+    app.controller('perfilCtrl', ['$scope', '$rootScope', 'feedService', 'Upload', function($scope, $rootScope, feedService, Upload) {
         $scope.feeds = [];
         $scope.isEditingUser = false;
 
@@ -338,6 +338,38 @@
                 });
 
         };
+
+
+        /*
+         * UPLOAD
+         */
+
+        //$scope.model = {};
+        $scope.foto = [];
+        $scope.uploadProgress = 0;
+    
+        $scope.$watch('foto', function () {
+            $scope.uploadFile($scope.foto);
+        });
+
+        $scope.uploadFile = function () {
+            console.log('uploadfile()');
+            var file = $scope.foto[0];
+            console.log('file', file);
+
+            $scope.upload = Upload.upload({
+                url: '/api/photo',
+                method: 'POST',
+                data: angular.toJson($rootScope.usuario),
+                file: file
+            }).progress(function (evt) {
+                $scope.uploadProgress = parseInt(100.0 * evt.loaded / evt.total, 10);
+                console.log('uploadProgress', $scope.uploadProgress);
+            }).success(function (data) {
+                console.log('data', data);
+            });
+        };
+
 
         // carrega feeds ao entrar na página
         feedService.consultarFeedsLimite(30).
@@ -439,6 +471,20 @@
         // usa o $sce.trustAsResourceUrl para validar a url para uso (sem isso não funciona)
         $scope.video = $sce.trustAsResourceUrl('https://www.youtube.com/embed/hTWKbfoikeg');
     }]);
+
+    
+    app.directive('progressBar', [
+        function () {
+            return {
+                link: function ($scope, el, attrs) {
+                    $scope.$watch(attrs.progressBar, function (newValue) {
+                        el.css('width', newValue.toString() + '%');
+                    });
+                }
+            };
+        }
+    ]);
+
 
 
 })();
