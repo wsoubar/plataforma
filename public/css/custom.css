@@ -176,6 +176,10 @@ body {
 /** 
  PERFIL
 **/
+#img-avatar {
+    max-height: 406px;
+}
+
 #perfil-nome{
     font-size: 18px;
 }

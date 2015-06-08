@@ -8,7 +8,7 @@
 
                         </div>
                         <div class="avatar">
-                            <img alt="" ng-src="{{(usuario.foto) ? usuario.foto : 'img/perfil/user-profile.png'}}">
+                            <img id="img-avatar" class="img-responsive" alt="" ng-src="{{(usuario.foto) ? usuario.foto : 'img/perfil/user-profile.png'}}">
                         </div>
                         <div class="info" id="userInfo" ng-hide="isEditingUser">
                             <div class="title" id="perfil-nome">
@@ -30,28 +30,28 @@
                                  action    =  "/api/photo"
                                  method    =  "post" novalidate
                             > -->
-                            <form ng-submit="uploadFile()">
-                            <input type="file" name="userPhoto" ngf-select ng-model="foto" />
-                          <div class="progress" style="margin-top: 20px;">
-                            <div class="progress-bar" progress-bar="uploadProgress" role="progressbar">
-                              <span ng-bind="uploadProgress"></span>
-                              <span>%</span>
-                            </div>
-                          </div>
+                            <form ng-submit="uploadFile()" novalidate>
+                                <input type="file" name="userPhoto" ngf-select ng-model="foto" />
+                                  <div class="progress" style="margin-top: 20px;">
+                                    <div class="progress-bar" progress-bar="uploadProgress" role="progressbar">
+                                      <span ng-bind="uploadProgress"></span>
+                                      <span>%</span>
+                                    </div>
+                                  </div>
 
-                            <input type="submit" value="Upload Image" name="submit" class="btn btn-primary btn-sm">
-                            <div class="form-group">
-                                <label for="nome">Nome</label>
-                                <input type="text" class="form-control input-sm" placeholder="Nome" id="nome" name="nome" ng-model="usuario.nome" required>
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control input-sm" id="email" name="email" ng-model="usuario.email" readonly >
-                                <label for="nome">Sobre você</label>
-                                <textarea class="form-control input-sm" placeholder="Sobre você..." id="bio" name="bio" ng-model="usuario.bio" maxlength="255" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="button" value="Salvar" class="form-control btn btn-primary btn-sm" />                                
-                                <input type="button" value="Cancelar" class="form-control btn btn-default btn-sm" />                                
-                            </div>
+                                <!-- <input type="submit" value="Upload Image" name="submit" class="btn btn-primary btn-sm"> -->
+                                <div class="form-group">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" class="form-control input-sm" placeholder="Nome" id="nome" name="nome" ng-model="usuario.nome" required>
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control input-sm" id="email" name="email" ng-model="usuario.email" readonly >
+                                    <label for="nome">Sobre você</label>
+                                    <textarea class="form-control input-sm" placeholder="Sobre você..." id="bio" name="bio" ng-model="usuario.bio" maxlength="255" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Salvar" class="form-control btn btn-primary btn-sm" />                                
+                                    <input type="button" value="Cancelar" class="form-control btn btn-default btn-sm" />                                
+                                </div>
                             </form>
                         </div>
                     </div>

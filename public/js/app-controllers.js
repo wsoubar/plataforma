@@ -353,8 +353,14 @@
         });
 
         $scope.uploadFile = function () {
+
+            var file;
+            if ($scope.foto) {
+                file = $scope.foto[0];  
+            } 
+            if (!file) return;
+
             console.log('uploadfile()');
-            var file = $scope.foto[0];
             console.log('file', file);
 
             $scope.upload = Upload.upload({
@@ -366,7 +372,9 @@
                 $scope.uploadProgress = parseInt(100.0 * evt.loaded / evt.total, 10);
                 console.log('uploadProgress', $scope.uploadProgress);
             }).success(function (data) {
+                console.log('Sucesso no upload');
                 console.log('data', data);
+                $rootScope.usuario.foto = '/uploads/' + data.files.file.name;
             });
         };
 

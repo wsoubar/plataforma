@@ -16,6 +16,8 @@ http://codeforgeek.com/2014/11/file-uploads-using-node-js/
 https://github.com/flowjs/ng-flow
 http://stackoverflow.com/questions/25019134/how-to-upload-an-image-file-to-mongoose-database-using-mean-js
 
+https://github.com/danialfarid/ng-file-upload
+
 (function (angular) {
 'use strict';
 
