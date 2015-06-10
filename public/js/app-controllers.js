@@ -426,6 +426,7 @@
                 if (data.sucesso) {
                     feedsDestaque = data.feeds;
                     $scope.feed = data.feeds[0];
+                    feedIdx++;
                 }
             }).
             error(function (err, status) {
@@ -437,7 +438,7 @@
             if (feedIdx >= feedsDestaque.length) {
                 feedIdx = 0;
             }
-        }, 5000); // 300000 = 5 minutos
+        }, 20000); // 300000 = 5 minutos
 
     }]);
 
