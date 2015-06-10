@@ -44,8 +44,6 @@
             }
         };
 
-        
-
     }]);
     
 
@@ -460,7 +458,8 @@
             p1: 'views/inc-dash/inc-desafios.html',
             p2: 'views/inc-dash/inc-participantes.html',
             p3: 'views/inc-dash/inc-feeds.html',
-            p4: 'views/inc-dash/inc-config.html'
+            p4: 'views/inc-dash/inc-config.html',
+            p5: 'views/inc-dash/inc-desafios-atende.html'
         };
 
         $scope.subpage = 'p1';
@@ -499,6 +498,11 @@
                 });
         };
 
+        $scope.atenderDesafio = function (desafio) {
+            $scope.desafio = desafio;
+            $scope.subpage='p5';
+
+        };
 
         $scope.listarDesafios();
         $scope.listaParticipantes();
