@@ -28,7 +28,8 @@ var desafios = {
         //mongoose.Schema.Types.ObjectId
         //console.log('id: ' + id);
         
-        Desafio.findOne({_id: id}, function(err, desafio) {
+        Desafio.findOne({_id: id}).
+        populate('anotacoes.usuario').exec(function(err, desafio) {
             //console.log('err', err);
             //console.log('desafio:', desafio);
             if (desafio) {
@@ -41,7 +42,8 @@ var desafios = {
     },
 
 	findAll : function(req, res) {
-        Desafio.find({},function(err, desafios) {
+        Desafio.find({}).
+        populate('anotacoes.usuario').exec(function(err, desafios) {
             if (desafios) {
                 res.json({ sucesso: true, mensagem: 'realizado com sucesso', desafios: desafios });
             } else {
@@ -59,6 +61,20 @@ var desafios = {
             telefone: req.body.telefone,
             desafio: req.body.desafio
         };
+
+        var anotacoes = [];
+        var bodyAnotacoes = req.body.anotacoes;
+
+        
+        for (var i = 0; i < bodyAnotacoes.length; i++) {
+            anotacoes.push({
+                texto : bodyAnotacoes[i].texto,
+                usuario : bodyAnotacoes[i].usuario._id,
+                data : bodyAnotacoes[i].data
+            });
+        };
+
+        desafioAtu.anotacoes = anotacoes;
 
         Desafio.findOneAndUpdate({_id: id}, desafioAtu,function(err, desafio) {
             if (desafio) {

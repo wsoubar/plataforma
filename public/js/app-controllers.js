@@ -453,17 +453,21 @@
      * Dashboard Controller
      * 
      */
-    app.controller('dashboardCtrl', ['$scope', 'desafioService', 'usuarioService', function($scope, desafioService, usuarioService) {
+    app.controller('dashboardCtrl', ['$rootScope', '$scope', 'desafioService', 'usuarioService', 'desafioService',
+    function($rootScope, $scope, desafioService, usuarioService, desafioService) {
+        
         $scope.pages = {
-            p1: 'views/inc-dash/inc-desafios.html',
-            p2: 'views/inc-dash/inc-participantes.html',
-            p3: 'views/inc-dash/inc-feeds.html',
-            p4: 'views/inc-dash/inc-config.html',
-            p5: 'views/inc-dash/inc-desafios-atende.html'
+            desafios: 'views/inc-dash/inc-desafios.html',
+            participantes: 'views/inc-dash/inc-participantes.html',
+            feeds: 'views/inc-dash/inc-feeds.html',
+            config: 'views/inc-dash/inc-config.html',
+            atenderDesafio: 'views/inc-dash/inc-desafios-atende.html'
         };
 
-        $scope.subpage = 'p1';
+        $scope.subpage  = 'desafios';
         $scope.desafios = [];
+        $scope.desafio  = undefined;
+        //$scope.opcao = $scope.pages[$routeParams.opcao];
 
         $scope.listarDesafios = function(){
             // busca desafios
@@ -500,8 +504,60 @@
 
         $scope.atenderDesafio = function (desafio) {
             $scope.desafio = desafio;
-            $scope.subpage='p5';
+            $scope.subpage = 'atenderDesafio';
+        };
 
+        $scope.anotacao = {};
+
+
+        $scope.salvarAnotacao = function () {
+
+            console.log('anotacao', $scope.anotacao);
+            if (!$scope.anotacao.texto) { 
+                console.log('Deu pau!!');
+                return ;
+            }
+
+            console.log('salvarAnotacao', $scope.desafio, $scope.anotacao);
+
+            if (!$scope.desafio.anotacoes) {
+                $scope.desafio.anotacoes =[];
+            }
+
+            // adiciona anotação no array de anotacoes
+            $scope.desafio.anotacoes.push({
+                texto: $scope.anotacao.texto, 
+                usuario: $rootScope.usuario                 
+            });
+
+            console.log('desafio >>', $scope.desafio);
+
+            // atualiza desafio
+            desafioService.atualizarDesafio($scope.desafio) .
+                success(function (data, status) {
+                    //console.log('data', data);
+                    // se sucesso, busca informacoes atualizadas
+                    if (data.sucesso) {
+                        desafioService.consultarDesafio(data.desafio._id).
+                            success(function (data, status) {
+                                if (data.sucesso) {
+                                    $scope.desafio = data.desafio;
+                                }
+                            }).
+                            error(function (err) {
+                                console.log('Erro > ', err);
+                            });
+                        $scope.anotacao.texto = '';
+                        $scope.formAnotacao.$setPristine(true); 
+
+                    } else {
+                        console.log('Erro>', data);
+                    }
+
+                }).
+                error(function (err){
+                    console.log('Err', err);
+                });
         };
 
         $scope.listarDesafios();
