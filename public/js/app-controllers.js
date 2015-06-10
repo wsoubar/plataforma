@@ -4,16 +4,14 @@
 
     var app = angular.module('plataformaApp-controllers', ['ngStorage']);
 
-    app.controller('mainCtrl', ['$rootScope', '$scope', '$interval', '$localStorage', '$location', 'feedService',
-        function($rootScope, $scope, $interval, $localStorage, $location, feedService) {
+    app.controller('mainCtrl', ['$rootScope', '$scope', '$localStorage', '$location', 
+        function($rootScope, $scope, $localStorage, $location) {
 
         if ($localStorage.css) {
             $rootScope.css = $localStorage.css;
         } else {
             $rootScope.css = 'united';
         }
-
-        $scope.feedsDestaque = [];
 
         $scope.welcome = 'Seja Bem Vindo!';
         $rootScope.usuario = undefined;
@@ -33,30 +31,7 @@
             $rootScope.token   = $localStorage.token;
         }
         
-        /*
-        var intervaloFeedsDestaque = $interval(function(){
-                $scope.buscaFeedsDestaque(function(feeds){
-                    $scope.feedsDestaque = feeds;
-                })
-            }, 300000); // 300000 = 5 minutos
-        */
-
-
-        $scope.getFeeds = function(qtd, cb) {
-            
-            feedService.consultarFeedsLimite(qtd).
-                success(function(data, status) {
-                    if (data.sucesso) {
-                        cb(data.feeds);
-                        //console.log('home feeds', data.feeds);
-                    }
-                }).
-                error(function(err, status) {
-                    console.log('erro ao consultar feeds para home', err);
-                });
-        };
-
-
+        
         $scope.doLogout = function() {
             console.log('doLogout()');
             if (confirm('Sair?')) {
@@ -69,13 +44,7 @@
             }
         };
 
-        $scope.buscaFeedsDestaque = function(cb){
-            $scope.getFeeds(3, cb);
-        };
-
-        $scope.buscaFeedsDestaque(function(feeds){
-            $scope.feedsDestaque = feeds;
-        });
+        
 
     }]);
     
@@ -445,11 +414,30 @@
      * Home Controller
      * 
      */
-    app.controller('homeCtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
-                $rootScope.citacaoHome = true;
-        //$interval(function(){
-        //    $scope.citacaoHome = !$scope.citacaoHome;
-        //},10000);
+    app.controller('homeCtrl', ['$scope', '$rootScope', 'feedService', '$interval', function($scope, $rootScope, feedService, $interval) {
+
+        var feedsDestaque = [];
+        $scope.feed = undefined;
+        var feedIdx = 0;
+        
+            
+        feedService.consultarFeedsLimite(3).
+            success(function (data, status) {
+                if (data.sucesso) {
+                    feedsDestaque = data.feeds;
+                    $scope.feed = data.feeds[0];
+                }
+            }).
+            error(function (err, status) {
+                console.log('erro ao consultar feeds para home', err);
+            });
+
+        var intervaloFeedsDestaque = $interval(function(){
+            $scope.feed = feedsDestaque[feedIdx++];
+            if (feedIdx >= feedsDestaque.length) {
+                feedIdx = 0;
+            }
+        }, 5000); // 300000 = 5 minutos
 
     }]);
 

@@ -70,7 +70,7 @@
                             <div class="panel-footer" ng-show="usuario">
                                 <form id="formFeed" name="formFeed" novalidate>
                                 <div class="input-group">
-                                    <input id="btn-input" type="text" ng-model="textoComentario" class="form-control" placeholder="Digite seu comentário aqui..." />
+                                    <input id="btn-input" type="text" ng-model="textoComentario" class="form-control" maxlength="1000" placeholder="Digite seu comentário aqui..." />
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" id="btn-chat" ng-click="enviaComentario()" >enviar</button>
                                     </span>

@@ -6,8 +6,8 @@
               <div class="intro-lead-in">{{welcome}}</div>
               <div class="intro-heading">Internet das Coisas</div>
               <div class="col-md-offset-3 col-md-6 col-md-offset-3 text-left">
-                  <blockquote ng-repeat="feed in feedsDestaque | limitTo: 1">
-                    <p>{{feed.texto}}</p>
+                  <blockquote> <!-- ng-repeat="feed in feedsDestaque | limitTo: 1" -->
+                    <p>{{feed.texto | limitTo: 150}}{{ (feed.texto.length > 150) ? '(...)':'' }}</p>
                     <footer>{{feed.usuario.nome}}</cite></footer>
                   </blockquote>
               </div>
