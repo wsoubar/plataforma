@@ -89,7 +89,11 @@ var usuarios = {
             nome: req.body.nome,
             email: req.body.email,
             telefone: req.body.telefone,
-            senha: req.body.senha
+            senha: req.body.senha, 
+            role: req.body.role,
+            foto: req.body.foto,
+            bio: req.body.bio,
+            ativo: req.body.ativo
         };
         Usuario.findOneAndUpdate({_id: id}, usuAtu,function(err, user) {
             if (user) {

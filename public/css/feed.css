@@ -34,6 +34,11 @@
     margin-right: 5px;
 }
 
+
+.panel {
+    border-radius: 0px !important;
+}
+
 .panel-body
 {
 /*    overflow-y: scroll;
@@ -42,7 +47,7 @@
 }
 
 .panel-body-feed {
-  height: 400px;
+  height: 500px; 
   overflow-y: scroll;   
 }
 

@@ -160,6 +160,11 @@ body {
 #perfil-div {
     padding-top: 15px;
 }
+
+.perfil-edit-button {
+     margin-top: 10px;
+}
+
 /*
     LOGIN - Ver login.css
  */

@@ -22,8 +22,8 @@
         $scope.acss = ['flatly', 'united', 'darkly', 'journal', 'default'];
         $scope.cssIdx = 0;
 
+        // só pra testes
         $scope.trocaCss = function() {
-            
             $rootScope.css = $scope.acss[$scope.cssIdx++];
             if ($scope.cssIdx > 3) $scope.cssIdx = 0;
         };
@@ -59,12 +59,14 @@
 
         $scope.doLogout = function() {
             console.log('doLogout()');
-            delete $rootScope.usuario;
-            delete $localStorage.usuario;
+            if (confirm('Sair?')) {
+                delete $rootScope.usuario;
+                delete $localStorage.usuario;
 
-            delete $scope.token;
-            delete $localStorage.token;
-            $location.path('/');
+                delete $scope.token;
+                delete $localStorage.token;
+                $location.path('/');
+            }
         };
 
         $scope.buscaFeedsDestaque = function(cb){
@@ -303,7 +305,8 @@
      * Feed Controller
      * 
      */
-    app.controller('perfilCtrl', ['$scope', '$rootScope', 'feedService', 'Upload', function($scope, $rootScope, feedService, Upload) {
+    app.controller('perfilCtrl', ['$scope', '$rootScope', 'feedService', 'Upload', '$localStorage', 'usuarioService',
+    function($scope, $rootScope, feedService, Upload, $localStorage, usuarioService) {
         $scope.feeds = [];
         $scope.isEditingUser = false;
 
@@ -378,6 +381,49 @@
             });
         };
 
+
+        $scope.salvarPerfil = function() {
+
+            console.log('salva perfil');
+            
+            usuarioService.atualizarUsuario($rootScope.usuario).
+                success(function (data, status) {
+                    if (data.sucesso) {
+                        console.log('data', data);
+                        $scope.isEditingUser = false;
+                        $localStorage.usuario = $rootScope.usuario;
+                    } else {
+                        $scope.mensagemErro = data.mensagem;
+                        console.log('Erro >', data);
+                    }
+                }).
+                error(function (err){
+                    console.log('Erro ao tentar incluir participante', err);
+                    $scope.mensagemErro = 'Ocorreu um erro inesperado. Teste mais tarde!';      
+                });
+        };
+
+        $scope.cancelarEdicaoPerfil = function(){
+            $scope.isEditingUser = false;
+            // $rootScope.usuario = undefined;
+
+            // busca a informação do usuário para sobrescrever qualquer edição
+            // acho que posso melhorar isso mais depois
+            usuarioService.consultarUsuario($rootScope.usuario._id).
+                success(function (data){
+                    if (data.sucesso) {
+                        $rootScope.usuario = data.usuario;
+                    } else {
+                        console.log('erro >', data);
+                    }
+                }).
+                error(function (err) {
+                    console.log('Erro >', err);
+                });
+
+            // $rootScope.usuario = $localStorage.usuario;
+            console.log('edicao do perfil cancelada!');
+        };
 
         // carrega feeds ao entrar na página
         feedService.consultarFeedsLimite(30).
@@ -479,20 +525,5 @@
         // usa o $sce.trustAsResourceUrl para validar a url para uso (sem isso não funciona)
         $scope.video = $sce.trustAsResourceUrl('https://www.youtube.com/embed/hTWKbfoikeg');
     }]);
-
-    
-    app.directive('progressBar', [
-        function () {
-            return {
-                link: function ($scope, el, attrs) {
-                    $scope.$watch(attrs.progressBar, function (newValue) {
-                        el.css('width', newValue.toString() + '%');
-                    });
-                }
-            };
-        }
-    ]);
-
-
 
 })();
