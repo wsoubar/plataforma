@@ -59,12 +59,12 @@ var desafios = {
             nome: req.body.nome,
             email: req.body.email,
             telefone: req.body.telefone,
-            desafio: req.body.desafio
+            desafio: req.body.desafio,
+            status: req.body.status
         };
 
         var anotacoes = [];
         var bodyAnotacoes = req.body.anotacoes;
-
         
         for (var i = 0; i < bodyAnotacoes.length; i++) {
             anotacoes.push({

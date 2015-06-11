@@ -34,6 +34,11 @@
     <div class="col-md-12">
         <h3>Adicione aqui anotações sobre o atendimento desse desafio</h3>
         <form id="formAnotacao" name="formAnotacao" ng-submit="salvarAnotacao()" novalidate>
+          <!-- <pre>desafio > {{desafio}}</pre> -->
+          <div class="form-group">
+              <label>Status</label>
+              <select class="form-control" ng-model="desafio.status" ng-options="status.valor as status.nome for status in statusDedafio">
+          </div>
           <div class="form-group" ng-class="{'has-error' : formAnotacao.anotacao.$invalid && formAnotacao.anotacao.$dirty, 'has-success': formAnotacao.anotacao.$valid}">
               <textarea class="form-control" rows="4" placeholder="Como está o andamento deste desdafio?" id="anotacao" name="anotacao" ng-model="anotacao.texto" required></textarea>
               <p class="help-block" ng-show="formAnotacao.anotacao.$invalid && formAnotacao.anotacao.$dirty">Anotação não pode ser em branco</p>
@@ -44,10 +49,6 @@
           <hr/>
           <h3>Histórico de anotações</h3>
           <div class="form-group" ng-repeat="anotacao in desafio.anotacoes | orderBy: '-data'">
-              <!-- <div class="form-control-static">
-                  {{anotacao.usuario.nome}} - {{anotacao.data | date: 'dd/MM/yyyy HH:mm'}}
-                  <textarea class="form-control" auto-grow >{{anotacao.texto}}</textarea>
-              </div> -->
               <div class="panel panel-default">
                 <div class="panel-heading">{{anotacao.usuario.nome}} <span class="pull-right"><span class="glyphicon glyphicon-time"></span> {{anotacao.data | date: 'dd/MM/yyyy HH:mm'}}</span></div>
                 <div class="panel-body">
