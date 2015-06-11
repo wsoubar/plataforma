@@ -1,11 +1,14 @@
 // app-controllers.js
 
-(function(){
+(function (){
 
     var app = angular.module('plataformaApp-controllers', []);
 
+    /*
+     Controller principal de entrada
+    */
     app.controller('mainCtrl', ['$rootScope', '$scope', '$localStorage', '$location', 
-        function($rootScope, $scope, $localStorage, $location) {
+        function ($rootScope, $scope, $localStorage, $location) {
 
         if ($localStorage.css) {
             $rootScope.css = $localStorage.css;
@@ -21,10 +24,12 @@
         $scope.cssIdx = 0;
 
         // só pra testes
-        $scope.trocaCss = function() {
+        /*
+        $scope.trocaCss = function () {
             $rootScope.css = $scope.acss[$scope.cssIdx++];
             if ($scope.cssIdx > 3) $scope.cssIdx = 0;
         };
+        */
 
         if ($localStorage.usuario) {
             $rootScope.usuario = $localStorage.usuario;
@@ -32,7 +37,7 @@
         }
         
         
-        $scope.doLogout = function() {
+        $scope.doLogout = function () {
             console.log('doLogout()');
             if (confirm('Sair?')) {
                 delete $rootScope.usuario;
@@ -50,12 +55,12 @@
     /**
      * controller da navbar
      */
-    app.controller('NavbarCtrl', ['$scope', '$window', function($scope, $window){
+    app.controller('NavbarCtrl', ['$scope', '$window', function ($scope, $window){
         $scope.isCollapsed = true;
         $scope.isLogged = false;
         //alert("screen width " + $window.innerWidth);
         
-        this.screenWidth = function() {
+        this.screenWidth = function () {
             alert("screen width " + $window.innerWidth);
         };
     }]);
@@ -67,15 +72,15 @@
      * 
      */
     app.controller('loginCtrl', [ '$rootScope','$scope','$localStorage', '$location', 'usuarioService', 
-        function($rootScope, $scope, $localStorage, $location, usuarioService) {
+        function ($rootScope, $scope, $localStorage, $location, usuarioService) {
 
         $scope.username = '';
         $scope.password = '';
 
-        $scope.doLogin = function() {
+        $scope.doLogin = function () {
 
             usuarioService.loginUsuario({email: $scope.username, senha: $scope.password}).
-                success(function(data, status){
+                success(function (data, status){
 
                     if (data.sucesso) {
                         /*
@@ -97,7 +102,7 @@
                         $scope.mensagemLogin = data.mensagem;
                     }
                 }).
-                error(function(err) {
+                error(function (err) {
                     console.log('Erro ao chamar o Login', err);
                     $scope.mensagemLogin = err;
                 });
@@ -111,11 +116,11 @@
      * Desafio Controller
      * 
      */
-    app.controller('desafioCtrl', ['$scope', 'desafioService', function($scope, desafioService) {
+    app.controller('desafioCtrl', ['$scope', 'desafioService', function ($scope, desafioService) {
         
         //$scope.mensagemSucesso = undefined;
         //$scope.mensagemErro = undefined;
-        $scope.postDesafio = function() {
+        $scope.postDesafio = function () {
             console.log('postDesafio');
     
             if (!$scope.nome || !$scope.email || !$scope.telefone || !$scope.desafio) {
@@ -131,7 +136,7 @@
             };
 
             desafioService.incluirDesafio(desafio).
-                success(function(data, status){
+                success(function (data, status){
                     console.log('data', data);
                     $scope.nome = '';
                     $scope.email = '';
@@ -141,13 +146,13 @@
                     $scope.mensagemSucesso = 'Desafio enviado com sucesso!';
 
                 }).
-                error(function(err) {
+                error(function (err) {
                     console.log('Err', err)
                     $scope.mensagemErro = 'Ocorreu um erro inesperado. Teste mais tarde!';                    
                 });
         };
 
-        $scope.clean = function(){
+        $scope.clean = function (){
             $scope.mensagemSucesso = undefined;
             $scope.mensagemErro = undefined;
         };
@@ -162,9 +167,9 @@
      * Participe Controller
      * 
      */
-    app.controller('participeCtrl', ['$scope', 'usuarioService', function($scope, usuarioService) {
+    app.controller('participeCtrl', ['$scope', 'usuarioService', function ($scope, usuarioService) {
 
-        $scope.postParticipante = function(){
+        $scope.postParticipante = function (){
 
             console.log('postParticipante');
 
@@ -183,7 +188,7 @@
             console.log('participante', part);
             
             usuarioService.incluirUsuario(part).
-                success(function(data, status){
+                success(function (data, status){
                     if (data.sucesso) {
                         console.log('data', data);
                         $scope.nome = '';
@@ -197,14 +202,14 @@
                         $scope.mensagemErro = data.mensagem;
                     }
                 }).
-                error(function(err){
+                error(function (err){
                     console.log('Erro ao tentar incluir participante', err);
                     $scope.mensagemErro = 'Ocorreu um erro inesperado. Teste mais tarde!';      
                 });
             
         };
 
-        $scope.clean = function(){
+        $scope.clean = function (){
             $scope.mensagemSucesso = undefined;
             $scope.mensagemErro = undefined;
         };
@@ -218,10 +223,10 @@
      * Feed Controller
      * 
      */
-    app.controller('feedCtrl', ['$scope', 'feedService', function($scope, feedService) {
+    app.controller('feedCtrl', ['$scope', 'feedService', function ($scope, feedService) {
         $scope.feeds = [];
 
-        $scope.enviaComentario = function() {
+        $scope.enviaComentario = function () {
 
             if (!$scope.textoComentario) {
                 return;
@@ -234,20 +239,20 @@
             };
 
             feedService.incluirFeed(feed)
-                .success(function(data, status) {
+                .success(function (data, status) {
                     // busca novos feedbacks após a inclusão:
                     feedService.consultarFeedsLimite(30).
-                        success(function(data, status){
+                        success(function (data, status){
                             if (data.sucesso) {
                                 $scope.feeds = data.feeds;
                             }
                             $scope.textoComentario = '';
                         }).
-                        error(function(err){
+                        error(function (err){
                             console.log('erro adicionando feed', err)
                         });
                 })
-                .error(function(err){
+                .error(function (err){
                     console.log('erro adicionando feed', err)
                 });
 
@@ -255,13 +260,13 @@
 
         // carrega feeds ao entrar na página
         feedService.consultarFeedsLimite(30).
-            success(function(data, status){
+            success(function (data, status){
                 if (data.sucesso) {
                     $scope.feeds = data.feeds;
                 }
                 $scope.textoComentario = '';
             }).
-            error(function(err){
+            error(function (err){
                 console.log('erro adicionando feed', err)
             });
 
@@ -273,11 +278,11 @@
      * 
      */
     app.controller('perfilCtrl', ['$scope', '$rootScope', 'feedService', 'Upload', '$localStorage', 'usuarioService',
-    function($scope, $rootScope, feedService, Upload, $localStorage, usuarioService) {
+    function ($scope, $rootScope, feedService, Upload, $localStorage, usuarioService) {
         $scope.feeds = [];
         $scope.isEditingUser = false;
 
-        $scope.enviaComentario = function() {
+        $scope.enviaComentario = function () {
 
             if (!$scope.textoComentario) {
                 return;
@@ -290,20 +295,20 @@
             };
 
             feedService.incluirFeed(feed)
-                .success(function(data, status) {
+                .success(function (data, status) {
                     // busca novos feedbacks após a inclusão:
                     feedService.consultarFeedsLimite(30).
-                        success(function(data, status){
+                        success(function (data, status){
                             if (data.sucesso) {
                                 $scope.feeds = data.feeds;
                             }
                             $scope.textoComentario = '';
                         }).
-                        error(function(err){
+                        error(function (err){
                             console.log('erro adicionando feed', err)
                         });
                 })
-                .error(function(err){
+                .error(function (err){
                     console.log('erro adicionando feed', err)
                 });
 
@@ -349,7 +354,7 @@
         };
 
 
-        $scope.salvarPerfil = function() {
+        $scope.salvarPerfil = function () {
 
             console.log('salva perfil');
             
@@ -370,7 +375,7 @@
                 });
         };
 
-        $scope.cancelarEdicaoPerfil = function(){
+        $scope.cancelarEdicaoPerfil = function (){
             $scope.isEditingUser = false;
             // $rootScope.usuario = undefined;
 
@@ -394,13 +399,13 @@
 
         // carrega feeds ao entrar na página
         feedService.consultarFeedsLimite(30).
-            success(function(data, status){
+            success(function (data, status){
                 if (data.sucesso) {
                     $scope.feeds = data.feeds;
                 }
                 $scope.textoComentario = '';
             }).
-            error(function(err){
+            error(function (err){
                 console.log('erro adicionando feed', err)
             });
 
@@ -412,7 +417,7 @@
      * Home Controller
      * 
      */
-    app.controller('homeCtrl', ['$scope', '$rootScope', 'feedService', '$interval', function($scope, $rootScope, feedService, $interval) {
+    app.controller('homeCtrl', ['$scope', '$rootScope', 'feedService', '$interval', function ($scope, $rootScope, feedService, $interval) {
 
         var feedsDestaque = [];
         $scope.feed = undefined;
@@ -431,7 +436,7 @@
                 console.log('erro ao consultar feeds para home', err);
             });
 
-        var intervaloFeedsDestaque = $interval(function(){
+        var intervaloFeedsDestaque = $interval(function (){
             $scope.feed = feedsDestaque[feedIdx++];
             if (feedIdx >= feedsDestaque.length) {
                 feedIdx = 0;
@@ -445,7 +450,7 @@
      * IoT Controller
      * 
      */
-    app.controller('iotCtrl', ['$scope', function($scope) {
+    app.controller('iotCtrl', ['$scope', function ($scope) {
     }]);
 
 
@@ -454,7 +459,7 @@
      * Hackathon Controller
      * 
      */
-    app.controller('hackathonCtrl', ['$scope', '$sce', function($scope, $sce) {
+    app.controller('hackathonCtrl', ['$scope', '$sce', function ($scope, $sce) {
         // usa o $sce.trustAsResourceUrl para validar a url para uso (sem isso não funciona)
         $scope.video = $sce.trustAsResourceUrl('https://www.youtube.com/embed/hTWKbfoikeg');
     }]);

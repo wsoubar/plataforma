@@ -21,7 +21,7 @@
         <td>{{ desafio.data | date: 'dd/MM/yyyy HH:mm'}}</td>
         <td>{{desafio.status | uppercase}}</td>
         <td><a href="" ng-click="atenderDesafio(desafio)" title="Atender"><span class="glyphicon glyphicon-pencil"></span></a>
-        <span class="glyphicon glyphicon-ok" ng-show="desafio.status =='processado'"></span></td>
+        <span class="glyphicon glyphicon-ok" ng-show="desafio.status =='finalizado'"></span></td>
       </tr>
     </tbody>
   </table>
