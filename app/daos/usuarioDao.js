@@ -85,14 +85,15 @@ var usuarios = {
 
     update  : function(req, res) {
         var id = req.params.id;
+
         var usuAtu = {
             nome: req.body.nome,
             email: req.body.email,
             telefone: req.body.telefone,
             senha: req.body.senha, 
             role: req.body.role,
-            foto: req.body.foto,
-            bio: req.body.bio,
+            foto: (req.body.foto)?req.body.foto:'',
+            bio: (req.body.bio)?req.body.bio:'',
             ativo: req.body.ativo
         };
         Usuario.findOneAndUpdate({_id: id}, usuAtu,function(err, user) {

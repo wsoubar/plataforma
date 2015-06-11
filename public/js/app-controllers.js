@@ -10,7 +10,7 @@
         if ($localStorage.css) {
             $rootScope.css = $localStorage.css;
         } else {
-            $rootScope.css = 'united';
+            $rootScope.css = 'flatly';
         }
 
         $scope.welcome = 'Seja Bem Vindo!';
