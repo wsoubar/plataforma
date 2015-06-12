@@ -18,7 +18,7 @@
         <td>{{p.telefone}}</td>
         <td>{{ p.data | date: 'dd/MM/yyyy HH:mm'}}</td>
         <td>{{p.status | uppercase}}</td>
-        <td><a href="" title="detalhes"><span class="glyphicon glyphicon-zoom-in"></span></a></td>
+        <td><a href="" ng-click="detalhesParticipante(p)" title="Detalhes"><span class="glyphicon glyphicon-zoom-in"></span></a></td>
       </tr>
     </tbody>
   </table>

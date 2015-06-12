@@ -14,10 +14,11 @@
         
         $scope.pages = {
             desafios: 'views/inc-dash/inc-desafios.html',
+            atenderDesafio: 'views/inc-dash/inc-desafio-atende.html',
             participantes: 'views/inc-dash/inc-participantes.html',
+            detalhesParticipante: 'views/inc-dash/inc-participante-det.html',
             feeds: 'views/inc-dash/inc-feeds.html',
-            config: 'views/inc-dash/inc-config.html',
-            atenderDesafio: 'views/inc-dash/inc-desafios-atende.html'
+            config: 'views/inc-dash/inc-config.html'
         };
 
         $scope.subpage  = 'desafios';
@@ -77,7 +78,7 @@
             console.log('salvarAnotacao', $scope.desafio, $scope.anotacao);
 
             if (!$scope.desafio.anotacoes) {
-                $scope.desafio.anotacoes =[];
+                $scope.desafio.anotacoes = [];
             }
 
             // adiciona anotação no array de anotacoes
@@ -129,8 +130,39 @@
             $scope.subpage = 'detalhesParticipante';
         };
 
+        $scope.userRoles = [
+            { nome: 'Usuário', valor: 'usuario'},
+            { nome: 'Administrador', valor: 'admin'}
+        ];
 
 
+        $scope.salvarUsuario = function () {
+
+            $scope.mensagemErro    = undefined;
+            $scope.mensagemSucesso = undefined;
+
+            usuarioService.atualizarUsuario($scope.participante).
+                success(function (data, status){
+                    if (data.sucesso) {
+                        $scope.mensagemSucesso = 'Atualizado com sucesso';
+                    } else {
+                        console.log('Erro ao atualizar usuário', data);
+                        $scope.mensagemErro = 'Erro na atualização, tente mais tarde.';
+                    }
+                }).
+                error(function (err){
+                    console.log('err >>', err);
+                    $scope.mensagemErro = 'Erro na atualização, tente mais tarde.';
+                });
+
+        };
+
+        $scope.limpaMensagens = function () {
+            $scope.mensagemSucesso = undefined;
+            $scope.mensagemErro = undefined;
+        };
+
+        /*
         $scope.chamaServicoLuiz = function () {
             console.log('chama serviço');
             $http.post('http://172.21.0.169:8180/sulamerica-ger-carteira-server/api/v1/simulacao', {valorAluguel: 1600.5, qtdMeses: 12}).
@@ -141,6 +173,7 @@
                     console.log('err >>>', err);
                 });
         };
+        */
 
         $scope.listarDesafios();
         $scope.listaParticipantes();
