@@ -1,25 +1,42 @@
-<h2 class="sub-header">Participantes</h2>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Telefone</th>
-        <th>Data</th>
-        <th>Status</th>
-        <th>#</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="p in participantes | orderBy:'nome'">
-        <td>{{p.nome}}</td>
-        <td>{{p.email}}</td>
-        <td>{{p.telefone}}</td>
-        <td>{{ p.data | date: 'dd/MM/yyyy HH:mm'}}</td>
-        <td>{{p.status | uppercase}}</td>
-        <td><a href="" ng-click="detalhesParticipante(p)" title="Detalhes"><span class="glyphicon glyphicon-zoom-in"></span></a></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="row">
+    <div class="col-md-8">
+      <h2 class="sub-header">Participantes</h2>
+    </div>
+    <div class="col-md-4 text-right form-inline">
+      <div class="form-group">
+        <label>Filtro: &nbsp;</label>
+        <input type="text" class="form-control input-sm" ng-model="filtro" />
+      </div>
+    </div>
+
 </div>
+<div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>Data</th>
+              <th>Status</th>
+              <th>#</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="p in participantes | orderBy:'nome' | filter: filtro">
+              <td>{{p.nome}}</td>
+              <td>{{p.email}}</td>
+              <td>{{p.telefone}}</td>
+              <td>{{ p.data | date: 'dd/MM/yyyy HH:mm'}}</td>
+              <td>{{p.status | uppercase}}</td>
+              <td><a href="" ng-click="detalhesParticipante(p)" title="Detalhes"><span class="glyphicon glyphicon-zoom-in"></span></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+</div>
+

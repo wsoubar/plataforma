@@ -1,28 +1,32 @@
-<h2 class="sub-header">Desafios</h2>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Telefone</th>
-        <th>Desafio</th>
-        <th>Data</th>
-        <th>Status</th>
-        <th>#</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="desafio in desafios | orderBy:'data'">
-        <td>{{desafio.nome}}</td>
-        <td>{{desafio.email}}</td>
-        <td>{{desafio.telefone}}</td>
-        <td>{{desafio.desafio | limitTo: 30}}...</td>
-        <td>{{ desafio.data | date: 'dd/MM/yyyy HH:mm'}}</td>
-        <td>{{desafio.status | uppercase}}</td>
-        <td><a href="" ng-click="atenderDesafio(desafio)" title="Atender"><span class="glyphicon glyphicon-pencil"></span></a>
-        <span class="glyphicon glyphicon-ok" ng-show="desafio.status =='finalizado'"></span></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="row">
+    <div class="col-md-12">
+      <h2 class="sub-header">Desafios</h2>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>Desafio</th>
+              <th>Data</th>
+              <th>Status</th>
+              <th>#</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="desafio in desafios | orderBy:'data'">
+              <td>{{desafio.nome}}</td>
+              <td>{{desafio.email}}</td>
+              <td>{{desafio.telefone}}</td>
+              <td>{{desafio.desafio | limitTo: 30}}...</td>
+              <td>{{ desafio.data | date: 'dd/MM/yyyy HH:mm'}}</td>
+              <td>{{desafio.status | uppercase}}</td>
+              <td><a href="" ng-click="atenderDesafio(desafio)" title="Atender"><span class="glyphicon glyphicon-pencil"></span></a>
+              <span class="glyphicon glyphicon-ok" ng-show="desafio.status =='finalizado'"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 </div>
