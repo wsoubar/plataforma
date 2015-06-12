@@ -6,6 +6,8 @@ var path = require('path');
 var desafioDao = require('./daos/desafioDao');
 var usuarioDao = require('./daos/usuarioDao');
 var feedDao = require('./daos/feedDao');
+var configDao = require('./daos/configuracoesDao');
+
 var tokenMw = require('./tokenMiddleware');
 var setup = require('./setup');
 
@@ -85,6 +87,12 @@ module.exports = function(app) {
 //    app.get('/feed/limite/:qtd', feedDao.findLimite);
     app.get('/api/feed', feedDao.findAll);
     app.delete('/api/feed/:id', feedDao.delete);
+
+    // CONFIGURACOES
+    app.post('/api/config', configDao.create);
+    app.put('/api/config', configDao.update);
+    app.get('/api/config', configDao.find);
+
 
     // frontend routes =========================================================
     app.get('*', function(req, res) {
