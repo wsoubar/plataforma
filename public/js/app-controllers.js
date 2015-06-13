@@ -10,18 +10,18 @@
     app.controller('mainCtrl', ['$rootScope', '$scope', '$localStorage', '$location', 
         function ($rootScope, $scope, $localStorage, $location) {
 
-        if ($localStorage.css) {
+        /* if ($localStorage.css) {
             $rootScope.css = $localStorage.css;
         } else {
             $rootScope.css = 'flatly';
-        }
+        }*/
 
         $scope.welcome = 'Seja Bem Vindo!';
         $rootScope.usuario = undefined;
         $rootScope.token   = undefined;
 
-        $scope.acss = ['flatly', 'united', 'darkly', 'journal', 'default'];
-        $scope.cssIdx = 0;
+        // $scope.acss = ['flatly', 'united', 'darkly', 'journal', 'default'];
+        // $scope.cssIdx = 0;
 
         // só pra testes
         /*
@@ -35,8 +35,8 @@
             $rootScope.usuario = $localStorage.usuario;
             $rootScope.token   = $localStorage.token;
         }
-        
-        
+
+   
         $scope.doLogout = function () {
             console.log('doLogout()');
             if (confirm('Sair?')) {

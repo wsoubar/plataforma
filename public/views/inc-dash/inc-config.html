@@ -3,15 +3,16 @@
       <h2 class="sub-header">Configurações</h2>
     </div>
     <form>
-      <div class="col-md-6">
+        <div class="col-md-6">
+            <pre>css = {{ css }}</pre>   
             <div class="form-group">
                 <label>Vídeo Hackathon</label>
                 <input class="form-control" ng-model="videoHackathon" >
             </div>
             <div class="form-group">
                 <label>Tema Padrão</label>
-                <input class="form-control" ng-model="videoHackathon" >
+                <select class="form-control" ng-model="css" ng-options="t as t for t in temas" ng-change="mudaTema(css)" />
             </div>
-      </div>
+        </div>
     </form>
 </div>

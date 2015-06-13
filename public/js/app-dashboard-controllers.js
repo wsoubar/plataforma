@@ -174,12 +174,25 @@
                 });
         };
         */
+        $scope.mudaTema = function (css) {
+            console.log('muda tema');
+            console.log('$scope.css', $scope.css);
+            console.log('$rootScope.css', $rootScope.css);
+            console.log('css', css);
+
+            $rootScope.css = css;
+        }
 
         $scope.listarDesafios();
         $scope.listaParticipantes();
 
     }]);
 
+
+    app.controller('teste', function ($http) {
+
+
+    });
 
 
 })();

@@ -5,9 +5,9 @@
         'plataformaApp-routes', 'plataformaApp-directives', 'plataformaApp-services', 'plataformaApp-filters', 
         'plataformaApp-controllers', 'plataformaApp-dashboard-ctrl']);
 
-/*    app.run(function (api) {
-      api.init();
+    app.run(function (initService) {
+      initService.init();
     });
-*/
+
 })();
 

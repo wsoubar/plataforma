@@ -138,4 +138,15 @@
 
     }]);
 
+    app.factory('initService', ['$rootScope', function ($rootScope) {
+        var initial = {};
+
+            initial.init = function () {
+                $rootScope.temas = ['flatly', 'united', 'darkly', 'journal', 'default'];
+                $rootScope.css = 'united';
+            };
+        
+        return initial;
+    }]);
+
 })();
