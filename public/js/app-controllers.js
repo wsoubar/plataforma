@@ -465,7 +465,7 @@
         if (!video) {
             // video = 'https://www.youtube.com/watch?v=KmzkgSpeKfQ';
         }
-        $scope.video = $sce.trustAsResourceUrl('https://www.youtube.com/embed/'+video);
+        $scope.video = $sce.trustAsResourceUrl(video);// 'https://www.youtube.com/embed/'+video);
     }]);
 
 })();
