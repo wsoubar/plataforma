@@ -4,15 +4,25 @@
     </div>
     <form>
         <div class="col-md-6">
-            <pre>css = {{ css }}</pre>   
+            <pre><code>css = {{ css }} | msg sucesso = {{mensagemSucesso}} | msgErro = {{mensagemErro}}</code></pre>
             <div class="form-group">
                 <label>Vídeo Hackathon</label>
-                <input class="form-control" ng-model="videoHackathon" >
+                <input class="form-control" ng-model="cfg.videoHackathon" >
             </div>
             <div class="form-group">
                 <label>Tema Padrão</label>
-                <select class="form-control" ng-model="css" ng-options="t as t for t in temas" ng-change="mudaTema(css)" />
+                <select class="form-control last-form-control" ng-model="css" ng-options="t as t for t in temas" ng-change="mudaTema(css)" />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" >
+            </div>
+            <div class="form-group">
+                <div id="success" class="alert alert-success" ng-show="mensagemSucesso">{{mensagemSucesso}}</div>
+                <div id="error" class="alert alert-danger" ng-show="mensagemErro">{{mensagemErro}}</div>
+                <input type="button" class="btn btn-primary" value="confirmar" ng-click="salvarConfigs()">
+                <input type="button" class="btn" value="cancelar">
             </div>
         </div>
+
     </form>
 </div>

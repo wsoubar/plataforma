@@ -226,3 +226,7 @@ blockquote footer {
     font-size: 100%;
     margin-top: 5px;
 }
+
+.last-form-control {
+    margin-bottom: 15px;
+}

@@ -459,9 +459,13 @@
      * Hackathon Controller
      * 
      */
-    app.controller('hackathonCtrl', ['$scope', '$sce', function ($scope, $sce) {
+    app.controller('hackathonCtrl', ['$scope', '$sce', '$rootScope', function ($scope, $sce, $rootScope) {
         // usa o $sce.trustAsResourceUrl para validar a url para uso (sem isso não funciona)
-        $scope.video = $sce.trustAsResourceUrl('https://www.youtube.com/embed/hTWKbfoikeg');
+        var video = $rootScope.configuracoes.videoHackathon;
+        if (!video) {
+            // video = 'https://www.youtube.com/watch?v=KmzkgSpeKfQ';
+        }
+        $scope.video = $sce.trustAsResourceUrl('https://www.youtube.com/embed/'+video);
     }]);
 
 })();

@@ -9,8 +9,8 @@
      * Dashboard Controller
      * 
      */
-    app.controller('dashboardCtrl', ['$rootScope', '$scope', 'desafioService', 'usuarioService', 'desafioService', '$http',
-    function ($rootScope, $scope, desafioService, usuarioService, desafioService, $http) {
+    app.controller('dashboardCtrl', ['$rootScope', '$scope', 'desafioService', 'usuarioService', 'desafioService', '$http', 'configService',
+    function ($rootScope, $scope, desafioService, usuarioService, desafioService, $http, configService) {
         
         $scope.pages = {
             desafios: 'views/inc-dash/inc-desafios.html',
@@ -24,7 +24,19 @@
         $scope.subpage  = 'desafios';
         $scope.desafios = [];
         $scope.desafio  = undefined;
+        $scope.cfg      = {};
         //$scope.opcao = $scope.pages[$routeParams.opcao];
+
+        $scope.setPage = function (page) {
+
+            if (page === 'config') {
+                $scope.cfg = angular.copy($rootScope.configuracoes);
+                $scope.mensagemErro = undefined;
+                $scope.mensagemSucesso = undefined;
+            }
+
+            $scope.subpage = page;
+        }
 
         $scope.listarDesafios = function (){
             // busca desafios
@@ -138,8 +150,7 @@
 
         $scope.salvarUsuario = function () {
 
-            $scope.mensagemErro    = undefined;
-            $scope.mensagemSucesso = undefined;
+            $scope.limpaMensagens();
 
             usuarioService.atualizarUsuario($scope.participante).
                 success(function (data, status){
@@ -175,13 +186,36 @@
         };
         */
         $scope.mudaTema = function (css) {
-            console.log('muda tema');
-            console.log('$scope.css', $scope.css);
-            console.log('$rootScope.css', $rootScope.css);
-            console.log('css', css);
+            //console.log('muda tema');
+            //console.log('$scope.css', $scope.css);
+            //console.log('$rootScope.css', $rootScope.css);
+            //console.log('css', css);
 
             $rootScope.css = css;
-        }
+        };
+
+        $scope.salvarConfigs = function () {
+            $scope.limpaMensagens();
+
+            // var cfg = $scope.cfg;
+            console.log('$scope.cfg', $scope.cfg);
+
+            configService.atualizar({ configuracoes: $scope.cfg })
+                .success(function (data) {
+                    console.log('success data', data);
+                    if (data.sucesso) {
+                        $rootScope.configuracoes = data.configuracoes;
+                        $scope.mensagemSucesso = 'Atualizado com sucesso';
+                    } else {
+                        console.log('Erro ao atualizar configurações', data);
+                        $scope.mensagemErro = 'Erro na atualização, tente mais tarde.';
+                    }
+                })
+                .error(function (err){
+                    console.log('err >>', err);
+                    $scope.mensagemErro = 'Erro na atualização, tente mais tarde.';
+                });
+        };
 
         $scope.listarDesafios();
         $scope.listaParticipantes();

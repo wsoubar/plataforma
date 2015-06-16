@@ -91,7 +91,7 @@ module.exports = function(app) {
     // CONFIGURACOES
     app.post('/api/config', configDao.create);
     app.put('/api/config', configDao.update);
-    app.get('/api/config', configDao.find);
+    app.get('/api/config', configDao.findOne);
 
 
     // frontend routes =========================================================

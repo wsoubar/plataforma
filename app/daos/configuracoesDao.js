@@ -13,16 +13,16 @@ var configs = {
                 res.json({ sucesso: false, mensagem: 'Falha ao tentar criar', erro: err });
             } else {
                 //console.log('usuario salvo!');
-                res.json({ sucesso: true, mensagem: 'realizado com sucesso', cofiguracoes: configs });
+                res.json({ sucesso: true, mensagem: 'realizado com sucesso', configuracoes: configs });
             }
         });
     },
 
-    find : function(req, res) {
+    findOne : function(req, res) {
 
-        Configuracoes.find({}, function(err, configs) {
+        Configuracoes.findOne({}, function(err, configs) {
             if (configs) {
-                res.json({ sucesso: true, mensagem: 'realizado com sucesso', cofiguracoes: configs });
+                res.json({ sucesso: true, mensagem: 'realizado com sucesso', configuracoes: configs });
             } else {
                 res.json({ sucesso: false, mensagem: 'Falha ao tentar buscar as configurações', erro: err });
             }
