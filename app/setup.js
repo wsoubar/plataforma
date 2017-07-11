@@ -35,7 +35,7 @@ var setup = {
                             console.log('Usuário criado');
 
                             // FEEDS
-                            for (i = 0; i < textosFeed.length; i++) {
+                            for (var i = 0; i < textosFeed.length; i++) {
                                 // CADASTRA FEEDS INICIAIS
                                 var feed = new Feed({
                                     texto: textosFeed[i],
